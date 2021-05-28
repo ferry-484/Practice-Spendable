@@ -1,0 +1,228 @@
+.buisnessSection > h3 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+}
+
+.buisnessSection .formFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.buisnessSection .formFlex .searchTextField {
+  width: 250px;
+}
+.buisnessSection .formFlex .searchTextField .MuiFormControl-root {
+  width: 100%;
+}
+.buisnessSection .formFlex .MuiButton-root {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+}
+
+.buisnessMemberSection .addMember {
+  width: 100%;
+  display: flex;
+}
+
+.buisnessMemberSection .addMember > button {
+  margin-left: auto;
+  margin-right: 0;
+  background: #0053a3;
+  color: #fff;
+  margin-bottom: 20px;
+}
+.buisnessMemberSection
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(3) {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.buisnessSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 14px;
+}
+
+.buisnessSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(8) {
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 14px;
+}
+.buisnessSection
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .viewimageLink {
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+.chooseBuisness .MuiDialog-paperWidthSm {
+  max-width: 400px;
+  width: 100%;
+}
+.chooseBuisness .MuiDialogContent-root {
+  min-height: 100px;
+  display: flex;
+  align-items: center;
+}
+.chooseBuisness .MuiDialogContent-root > div {
+  width: 100%;
+}
+.chooseBuisness .MuiDialogContent-root .MuiFormControl-root {
+  width: 100%;
+}
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+}
+
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInputLabel-outlined.MuiInputLabel-marginDense {
+  transform: translate(0px, 25px) scale(1);
+}
+
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(0px, -6px) scale(0.75);
+}
+.chooseBuisness .MuiDialogActions-root button {
+  border-radius: 6px;
+}
+.chooseBuisness .MuiDialogActions-root button:last-child {
+  color: #fff !important;
+  border-radius: 6px;
+}
+
+.chooseBuisness .MuiDialogActions-root {
+  padding: 10px 10px 10px 0px !important;
+}
+
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInput-underline:after {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+
+.chooseBuisness
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiSelect-select.MuiSelect-select {
+  background: #fff;
+}
+
+.mapFrame {
+  display: flex;
+  margin: 0px -10px;
+  min-height: 350px;
+}
+
+.mapFrame .contactAddress {
+  width: calc(50% - 20px);
+  margin: 0px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapFrame .transactionAddress {
+  width: calc(50% - 20px);
+  margin: 0px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/*********************map css ***********************/
+
+.mapFrame {
+  display: flex;
+  flex-wrap: wrap;
+}
+.mapFrame h5 {
+  width: calc(50% - 20px);
+  margin: 0px 10px 10px 10px;
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+}
+
+.mapFrame .contactAddress .map {
+  position: relative;
+  height: 100%;
+}
+.mapFrame .contactAddress .map .MuiSvgIcon-root.pin-icon {
+  fill: red;
+}
+
+.mapFrame .transactionAddress .map {
+  position: relative;
+  height: 100%;
+}
+
+.mapFrame .transactionAddress .map .MuiSvgIcon-root.pin-icon {
+  fill: red;
+}
+/****************************************************************/
+
+/******************bussinessDataTable css******************/
+
+.buisnessSection .bussinessDataTable .statusLink img {
+  width: 20px;
+  height: auto;
+}
+/*********************************************************/
+.buisnessSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td .statusLink {
+  display: inline-flex;
+  margin-right: 0;
+  margin-left: auto;
+}
+.buisnessSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td .action {
+  display: flex;
+}
+.buisnessSection
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .action
+  button {
+  display: inline-flex;
+}

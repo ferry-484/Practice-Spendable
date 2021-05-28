@@ -1,0 +1,252 @@
+/******************adminPaymentTable css*********/
+.adminPaymentTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  span.viewimageLink {
+  display: inline-block;
+  font-weight: 600;
+  color: #f1574b;
+  cursor: pointer;
+}
+
+.adminPaymentTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  span.viewshoppingLink {
+  display: inline-block;
+  font-weight: 600;
+  color: #0053a3;
+  cursor: pointer;
+}
+/*********************************************/
+
+.adminPaymentSection > h2 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 15px 0px;
+}
+.adminPaymentSection .searchTextField {
+  width: 250px;
+}
+/****************************************/
+
+.viewImageScrollModal .MuiDialog-paperWidthSm {
+  max-width: 600px;
+  width: 100%;
+}
+.viewImageScrollModal .MuiDialogTitle-root {
+  border-bottom: 1px solid #ccc;
+}
+.viewImageScrollModal .MuiDialogTitle-root h6 {
+  font-weight: 600;
+  color: #000;
+  font-size: 18px;
+  line-height: normal;
+  padding-bottom: 10px;
+}
+.viewImageScrollModal .MuiDialogTitle-root button {
+  outline: none;
+  background: transparent;
+  top: 0;
+}
+
+.viewImageScrollModal .MuiDialogContent-root .carousel {
+  display: flex;
+  flex-direction: column-reverse;
+}
+.viewImageScrollModal .MuiDialogContent-root .carousel .carousel-indicators {
+  margin-top: 10px;
+  margin-bottom: 0px;
+  position: relative;
+}
+
+.viewImageScrollModal .MuiDialogContent-root .carousel .carousel-indicators li {
+  border-radius: 50%;
+  background: #0053a3;
+  width: 15px;
+  height: 15px;
+
+  flex: none;
+  border-top: none;
+  border-bottom: none;
+  box-sizing: border-box;
+}
+.viewImageScrollModal
+  .MuiDialogContent-root
+  .carousel
+  .carousel-inner
+  .carousel-item {
+  height: 350px;
+}
+.viewImageScrollModal
+  .MuiDialogContent-root
+  .carousel
+  .carousel-inner
+  .carousel-item
+  img {
+  width: 100%;
+  height: 100%;
+}
+.viewImageScrollModal .MuiDialogContent-root .carousel .carousel-inner > div {
+  height: 350px;
+}
+.viewImageScrollModal
+  .MuiDialogContent-root
+  .carousel
+  .carousel-inner
+  img.noImageFound {
+  width: 300px;
+  height: auto;
+  margin: 0px auto;
+  display: block;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 10px;
+}
+
+/****************************************/
+
+.shoppinglistMOdal .MuiDialog-paperWidthSm {
+  max-width: 650px;
+  width: 100%;
+}
+.shoppinglistMOdal .MuiDialogTitle-root {
+  border-bottom: 1px solid #ccc;
+}
+.shoppinglistMOdal .MuiDialogTitle-root h6 {
+  font-weight: 600;
+  color: #000;
+  font-size: 18px;
+  line-height: normal;
+  padding-bottom: 10px;
+}
+.shoppinglistMOdal .MuiDialogTitle-root button {
+  outline: none;
+  background: transparent;
+  top: 0;
+}
+.shoppinglistMOdal .MuiDialogContent-root .hidetable {
+  display: none;
+}
+.shoppinglistMOdal .MuiDialogContent-root .showtable {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.shoppinglistMOdal .MuiDialogContent-root .showtable li {
+  list-style: none;
+  padding: 10px 10px;
+  color: #000;
+  width: calc(50% - 1px);
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+}
+.shoppinglistMOdal .MuiDialogContent-root .showtable li:last-child {
+  border-right: none;
+  width: 50%;
+}
+.shoppinglistMOdal .MuiDialogContent-root .MuiFormControl-root {
+  width: 100%;
+}
+.shoppinglistMOdal .MuiDialogContent-root .shoppingListData {
+  display: inline-block;
+}
+.shoppinglistMOdal
+  .MuiDialogContent-root
+  .shoppingListData
+  .MuiFormControl-root {
+  display: flex;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  flex-direction: row;
+  width: 100%;
+}
+
+.shoppinglistMOdal
+  .MuiDialogContent-root
+  .shoppingListData
+  .MuiFormControl-root
+  .MuiMenuItem-root {
+  padding: 10px 10px;
+  color: #000;
+  width: calc(50% - 1px);
+  border-right: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  white-space: normal;
+  font-size: 14px;
+}
+.shoppinglistMOdal
+  .MuiDialogContent-root
+  .shoppingListData
+  .MuiFormControl-root
+  .MuiMenuItem-root:last-child {
+  border-right: none;
+  width: 50%;
+}
+.shoppinglistMOdal
+  .MuiDialogContent-root
+  .shoppingListData
+  .MuiFormControl-root
+  .MuiMenuItem-root:last-child
+  .blockbtn {
+  margin-right: 0px;
+  margin-left: auto;
+  border-radius: 6px;
+  color: #fff;
+  background: #0053a3;
+  padding: 5px 10px;
+}
+
+/********************************/
+.adminPaymentSection .paymentFex {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.adminPaymentSection .paymentFex .resetBtn {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: block;
+  color: #fff;
+  background: #0053a3;
+  cursor: pointer;
+  margin-bottom: 0px;
+}
+/* .adminPaymentSection .paymentFex */
+.adminPaymentSection
+  .adminPaymentTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  button {
+  border-radius: 6px;
+  color: #fff;
+  background: #0053a3;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.display_inline{
+  display: inline-flex;
+}
+.mr5{
+  margin-right: 5px !important;
+}
+/**********************************/

@@ -1,0 +1,74 @@
+.addSupporterForm > h3 {
+  font-size: 22px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+}
+.addSupporterForm .addSupporterForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+.addSupporterForm .addSupporterForm > div > .MuiFormControl-root {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.addSupporterForm .addSupporterForm .MuiFormControl-root.dateField {
+  margin-top: 16px;
+}
+.addSupporterForm
+  .addSupporterForm
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+
+.addSupporterForm .addSupporterForm .MuiInput-underline:after {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+.addSupporterForm .addSupporterForm .MuiFormLabel-root.Mui-focused {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+.addSupporterForm .addSupporterForm > div {
+  width: calc(33.3% - 15px);
+  margin-right: 15px;
+}
+.addSupporterForm .addSupporterForm > div:nth-child(3) {
+  width: calc(20% - 15px);
+  margin-right: 14%;
+}
+.addSupporterForm .addSupporterForm > div:nth-child(3) .MuiButtonBase-root {
+  background: transparent;
+}
+
+.addSupporterForm
+  .addSupporterForm
+  > div:nth-child(3)
+  .MuiButtonBase-root
+  .MuiTouchRipple-root {
+  display: none;
+}
+.addSupporterForm .addSupporterForm > div:nth-child(3) svg {
+  fill: rgba(0, 0, 0, 0.3);
+}
+.addSupporterForm .addSupporterForm > div:nth-child(11) {
+  /* width: calc(33.3% - 15px);
+  margin-right: 33.3%; */
+  margin-top: 15px;
+  width: 100%;
+}
+.addSupporterForm .addSupporterForm > div:nth-child(11) h5 {
+  font-size: 20px;
+}
+.addSupporterForm .MuiDialogActions-root button {
+  border-radius: 4px;
+}
+
+.addSupporterForm .MuiDialogActions-root button:nth-child(2) {
+  color: #fff !important;
+  margin-left: 10px;
+}
+
+.addSupporterForm .MuiDialogActions-root button:nth-child(2):hover {
+  color: #fff !important;
+  margin-left: 10px;
+}

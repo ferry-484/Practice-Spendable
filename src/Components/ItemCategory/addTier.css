@@ -1,0 +1,19 @@
+.addTierSection > h3 {
+  font-size: 20px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+  width: 100%;
+}
+.addTierSection .addAdminParticipantForm .MuiFormControl-root {
+  max-width: 250px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+.addTierSection .MuiDialogActions-root button:nth-child(2) {
+  margin-left: 10px;
+  color: #fff;
+}
+.addTierSection .MuiDialogActions-root button:nth-child(2) .MuiButton-label {
+  color: #fff;
+}

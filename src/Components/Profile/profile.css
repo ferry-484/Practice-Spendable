@@ -1,0 +1,15 @@
+.profilemodifySection .formComponent .MuiDialogActions-root button {
+  border: none !important;
+  color: #fff !important;
+  border-radius: 4px;
+  background: #0053a3 !important;
+  min-width: 100px !important;
+}
+
+.profilemodifySection .formComponent .MuiDialogActions-root button:hover {
+  border: none !important;
+  color: #fff !important;
+  border-radius: 4px;
+  background: #0053a3 !important;
+  min-width: 100px !important;
+}

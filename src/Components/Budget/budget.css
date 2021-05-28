@@ -1,0 +1,407 @@
+.budgetSection > h2 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 15px 0px;
+}
+
+.budgetSection .inputfield {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+.budgetSection .inputfield .MuiFormControl-root {
+  min-width: 250px;
+  margin-right: 15px;
+}
+.budgetSection .inputfield .addbdgetBtn {
+  margin-bottom: 0px;
+}
+.budgetSection .formFlex {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.budgetSection .formFlex > div {
+  width: 250px;
+  margin-right: 15px;
+}
+.budgetSection .formFlex .MuiFormControl-root {
+  width: 100%;
+}
+.budgetSection .formFlex .searchTextField {
+  width: 250px;
+}
+.budgetSection .formFlex .searchTextField .MuiFormControl-root {
+  width: 100%;
+}
+.budgetSection .formFlex button {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+}
+.budgetSection .addbdgetBtn {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.budgetSection .addbdgetBtn button {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+  outline: none;
+}
+.budgetSection .add {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 0px;
+  margin-left: auto;
+}
+.guardianParticipantSection > h2 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+}
+
+.guardianParticipantSection .formFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.guardianParticipantSection .formFlex .searchTextField {
+  width: 250px;
+}
+.guardianParticipantSection .formFlex .searchTextField .MuiFormControl-root {
+  width: 100%;
+}
+.guardianParticipantSection .formFlex button {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+}
+
+/***************************ParticipantTab******************************/
+.participantTab {
+  margin-top: 30px;
+}
+.participantTab .MuiAppBar-colorPrimary {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.participantTab .MuiAppBar-colorPrimary .MuiTabs-indicator {
+  display: none;
+}
+.participantTab .MuiAppBar-colorPrimary .MuiTabs-flexContainer > button {
+  font-weight: 600;
+  border-radius: 4px 4px 0px 0px;
+}
+.participantTab
+  .MuiAppBar-colorPrimary
+  .MuiTabs-flexContainer
+  > button.Mui-selected {
+  background: #fff;
+  border-radius: 4px 4px 0px 0px;
+  color: #0053a3;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+
+.participantTab .MuiTypography-root {
+  border: 1px solid #ccc;
+}
+
+.participantTab .MuiBox-root {
+  background: #fff;
+  position: relative;
+}
+
+.participantTab .MuiBox-root .addsupportBtn {
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #0053a3;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+}
+.participantTab .MuiBox-root .addsupportBtn:hover {
+  background: #0053a3;
+  color: #fff;
+}
+.participantTab .MuiBox-root .addbusinessBtn {
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #0053a3;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 10px);
+}
+.participantTab .MuiBox-root .addbusinessBtn:hover {
+  background: #0053a3;
+  color: #fff;
+}
+/*************************************************************************/
+
+/*************************companyTabHeaderProfileDetails css*******************/
+
+.companyTabHeaderProfileDetails .participantName {
+  display: flex;
+  align-items: center;
+}
+.companyTabHeaderProfileDetails .participantName .Image {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.companyTabHeaderProfileDetails .participantName .Image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.companyTabHeaderProfileDetails .participantName > h5 {
+  font-size: 18px;
+  color: #000;
+  margin: 0px 0px 0px 0px;
+}
+.companyTabHeaderProfileDetails .participantName .editLink {
+  margin-right: 0px;
+  margin-left: auto;
+}
+.companyTabHeaderProfileDetails .participantName .editLink button {
+  color: #ff952a;
+  border: 1px solid #ff952a;
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.companyTabHeaderProfileDetails .participantName .editLink button:hover {
+  background: #fff;
+}
+.companyTabHeaderProfileDetails .participantName .editLink button img {
+  width: 16px;
+  height: auto;
+}
+.companyTabHeaderProfileDetails .participantName .cardDetailBtn {
+  color: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #0053a3;
+  margin-left: 10px;
+  height: 30px;
+}
+.companyTabHeaderProfileDetails
+  .participantName
+  .cardDetailBtn
+  .MuiButton-label {
+  line-height: normal;
+}
+.companyTabHeaderProfileDetails .participantName .cardDetailBtn:hover {
+  background: #0053a3;
+  color: #fff;
+  outline: none;
+}
+.companyTabHeaderProfileDetails .address {
+  font-size: 16px;
+  color: #000;
+  padding-left: 0px;
+  margin-top: 0px;
+}
+
+.companyTabHeaderProfileDetails .participantInformationDetails {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+/* .companyTabHeaderProfileDetails .participantInformationDetails li:nth-child(1) {
+    width: 25%;
+  } */
+.companyTabHeaderProfileDetails .participantInformationDetails li {
+  list-style: none;
+  width: 20%;
+}
+.companyTabHeaderProfileDetails .participantInformationDetails li span {
+  display: block;
+  color: #000;
+  font-size: 16px;
+  line-height: normal;
+  word-break: break-all;
+  word-break: break-word;
+}
+.companyTabHeaderProfileDetails
+  .participantInformationDetails
+  li
+  span:nth-child(1) {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+/*******************************************************************************/
+
+/*************************participantDocumentVerifivation table css****************/
+.participantDocumentVerifivation {
+  width: 80%;
+  margin-top: 20px;
+}
+.participantDocumentVerifivation table {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.participantDocumentVerifivation table thead {
+  display: block;
+  background: rgba(0, 83, 163, 0.2);
+}
+.participantDocumentVerifivation table thead tr {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.participantDocumentVerifivation table thead tr th:nth-child(1) {
+  width: 100px;
+}
+.participantDocumentVerifivation table thead tr th {
+  width: calc(50% - 50px);
+  padding: 10px 10px;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  font-weight: 600;
+  border-bottom: none;
+  text-align: left;
+}
+.participantDocumentVerifivation table tbody {
+  display: block;
+}
+.participantDocumentVerifivation table tbody tr {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.participantDocumentVerifivation table tbody tr:nth-child(2n) {
+  background: rgba(0, 83, 163, 0.2);
+}
+.participantDocumentVerifivation table tbody tr:last-child {
+  border-bottom: none;
+}
+.participantDocumentVerifivation table tbody tr td:nth-child(1) {
+  width: 100px;
+}
+.participantDocumentVerifivation table tbody tr td {
+  display: block;
+  width: calc(50% - 50px);
+  font-size: 14px;
+  color: #000;
+  padding: 10px 10px;
+  border-bottom: none;
+  word-break: break-all;
+  word-break: break-word;
+}
+/**********************************************************************************/
+
+/*****************************cardDetailModal css******************************/
+
+.cardDetailModal .MuiDialog-paperWidthSm {
+  width: 100%;
+  max-width: 400px;
+}
+.cardDetailModal .MuiDialog-paperWidthSm .MuiDialogTitle-root > h6 {
+  font-weight: 600;
+  color: #000;
+}
+.cardDetailModal .MuiDialog-paperWidthSm .MuiDialogTitle-root {
+  border-bottom: 1px solid #ccc;
+}
+
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root {
+  width: 100%;
+}
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiMenuItem-root {
+  padding: 5px;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid #cccc;
+  margin-bottom: 5px;
+}
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiMenuItem-root
+  > span:first-child {
+  width: 120px;
+  position: relative;
+}
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiMenuItem-root
+  > span:first-child::after {
+  content: ":";
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  top: 0px;
+  color: #000;
+  font-weight: 600;
+}
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiMenuItem-root
+  > span {
+  display: inline-block;
+  word-break: break-all;
+  word-break: break-word;
+}
+.cardDetailModal
+  .MuiDialog-paperWidthSm
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiMenuItem-root:last-child {
+  border-bottom: none;
+  margin-bottom: 0px;
+}
+/*****************************************************************************/
+
+@media screen and (max-width: 1440px) {
+  .companyTabHeaderProfileDetails .participantInformationDetails li {
+    list-style: none;
+    width: 25%;
+    margin-bottom: 10px;
+  }
+}
+
+/*************************************/
+
+.adminBudgetTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .MuiButtonBase-root.Mui-disabled
+  img {
+  filter: grayscale(100%);
+}

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36">
+  <g id="photo" transform="translate(-355 -222)">
+    <g id="Ellipse_9" data-name="Ellipse 9" transform="translate(355 222)" fill="#fff" stroke="#000" stroke-width="1" opacity="0.5">
+      <circle cx="18" cy="18" r="18" stroke="none"/>
+      <circle cx="18" cy="18" r="17.5" fill="none"/>
+    </g>
+    <path id="Icon_material-insert-photo" data-name="Icon material-insert-photo" d="M23.111,17.189V6.086A1.881,1.881,0,0,0,21.043,4.5H6.568A1.881,1.881,0,0,0,4.5,6.086v11.1a1.881,1.881,0,0,0,2.068,1.586H21.043A1.881,1.881,0,0,0,23.111,17.189ZM10.187,12.827l2.585,2.387,3.619-3.577L21.043,16.4H6.568Z" transform="translate(359.5 228.5)" opacity="0.5"/>
+  </g>
+</svg>

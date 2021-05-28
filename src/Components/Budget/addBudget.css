@@ -1,0 +1,33 @@
+.addbudgetSection > h2 {
+  font-size: 20px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+  width: 100%;
+}
+.addbudgetSection .addAdminParticipantForm {
+  display: flex;
+  margin: 0px -15px;
+}
+.addbudgetSection .addAdminParticipantForm > div {
+  width: calc(33% - 30px);
+  margin: 0px 15px;
+}
+.addbudgetSection .addAdminParticipantForm .MuiFormControl-root {
+  width: 100%;
+}
+.addbudgetSection
+  .addAdminParticipantForm
+  .MuiFormControl-root.MuiFormControl-marginNormal {
+  margin: 0px 0px 0px 0px;
+}
+.addbudgetSection .addAdminParticipantForm {
+  margin-bottom: 15px;
+}
+.addbudgetSection .MuiDialogActions-root button:nth-child(2) {
+  color: #fff;
+  margin-left: 15px;
+}
+.addbudgetSection .MuiDialogActions-root button:nth-child(2) .MuiButton-label {
+  color: #fff;
+}

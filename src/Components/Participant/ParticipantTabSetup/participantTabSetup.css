@@ -1,0 +1,138 @@
+.connectedSupporterTable {
+  padding: 30px 15px;
+}
+.connectedSupporterTable .ReactTable .rt-thead {
+  background: #f4f4fb;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.connectedSupporterTable .ReactTable .rt-thead .rt-tr {
+  padding-top: 0px;
+}
+.connectedSupporterTable .ReactTable .rt-thead .rt-resizable-header-content {
+  font-size: 14px;
+}
+.connectedSupporterTable .ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: none;
+}
+.connectedSupporterTable .ReactTable .rt-tbody .rt-tr-group .rt-tr {
+  border-radius: 4px;
+}
+.connectedSupporterTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .MuiButton-root {
+  border-radius: 4px;
+  color: #fff;
+  background: #0053a3;
+}
+.connectedSupporterTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .MuiButton-root
+  .MuiButton-label {
+  line-height: normal;
+}
+.connectedSupporterTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group:nth-child(2n)
+  .rt-tr {
+  background: #f4f4fb !important;
+}
+
+.connectedBuisness {
+  padding: 30px 15px;
+}
+.connectedBuisness .ReactTable .rt-thead {
+  background: #f4f4fb;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.connectedBuisness .ReactTable .rt-thead .rt-tr {
+  padding-top: 0px;
+}
+.connectedBuisness .ReactTable .rt-thead .rt-resizable-header-content {
+  font-size: 14px;
+}
+.connectedBuisness .ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: none;
+}
+.connectedBuisness .ReactTable .rt-tbody .rt-tr-group .rt-tr {
+  border-radius: 4px;
+}
+.connectedBuisness
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .MuiButton-root {
+  border-radius: 4px;
+  color: #fff;
+  background: #0053a3;
+}
+.connectedBuisness
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .MuiButton-root
+  .MuiButton-label {
+  line-height: normal;
+}
+.connectedBuisness .ReactTable .rt-tbody .rt-tr-group:nth-child(2n) .rt-tr {
+  background: #f4f4fb !important;
+}
+
+.paymentRequest {
+  padding: 30px 15px;
+}
+.paymentRequest .ReactTable .rt-thead {
+  background: #f4f4fb;
+  box-shadow: none;
+  border-radius: 4px;
+}
+.paymentRequest .ReactTable .rt-thead .rt-tr {
+  padding-top: 0px;
+}
+.paymentRequest .ReactTable .rt-thead .rt-resizable-header-content {
+  font-size: 14px;
+}
+.paymentRequest .ReactTable .rt-tbody .rt-tr-group {
+  border-bottom: none;
+}
+.paymentRequest .ReactTable .rt-tbody .rt-tr-group .rt-tr {
+  border-radius: 4px;
+}
+.paymentRequest .ReactTable .rt-tbody .rt-tr-group:nth-child(2n) .rt-tr {
+  background: #f4f4fb !important;
+}
+.connectedSupporterTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .viewimageLink {
+  color: #0053a3;
+  cursor: pointer;
+}
+
+.connectedBuisness
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td
+  .viewimageLink {
+  color: #0053a3;
+  cursor: pointer;
+}

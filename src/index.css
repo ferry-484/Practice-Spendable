@@ -1,0 +1,178 @@
+@font-face {
+  font-family: "Proxima Nova Rg";
+  src: url("assets/Proximafonts/ProximaNova-Regular.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNova-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Proxima Nova Th";
+  src: url("assets/Proximafonts/ProximaNovaT-Thin.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNovaT-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Alt Rg";
+  src: url("assets/Proximafonts/ProximaNovaA-Bold.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNovaA-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Alt Th";
+  src: url("assets/Proximafonts/ProximaNovaA-Thin.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNovaA-Thin.woff") format("woff");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Rg";
+  src: url("assets/Proximafonts/ProximaNova-Bold.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNova-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Th";
+  src: url("assets/Proximafonts/ProximaNova-Extrabld.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNova-Extrabld.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Bl";
+  src: url("assets/Proximafonts/ProximaNova-Black.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNova-Black.woff") format("woff");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Rg";
+  src: url("assets/Proximafonts/ProximaNova-Regular.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNova-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Proxima Nova Alt Lt";
+  src: url("assets/Proximafonts/ProximaNovaA-Light.woff2") format("woff2"),
+    url("assets/Proximafonts/ProximaNovaA-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+.MuiButton-label {
+  font-family: "Proxima Nova Rg" !important;
+}
+.ModalTitle {
+  font-family: "Proxima Nova Rg" !important;
+}
+.MuiTypography-body1 {
+  font-family: "Proxima Nova Rg" !important;
+}
+.MuiTab-root {
+  font-family: "Proxima Nova Rg" !important;
+}
+
+.MuiTypography-root {
+  font-family: "Proxima Nova Rg" !important;
+}
+
+.MuiTableCell-head {
+  font-family: "Proxima Nova Rg" !important;
+}
+.MuiTableCell-body {
+  font-family: "Proxima Nova Rg" !important;
+}
+.MuiInputBase-input {
+  font-family: "Proxima Nova Rg" !important;
+  font-size: 14px !important;
+}
+.MuiInputLabel-root {
+  font-family: "Proxima Nova Rg" !important;
+}
+
+body {
+  margin: 0;
+  color: #000 !important;
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif; */
+  font-size: 16px !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Proxima Nova Rg" !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
+  outline: none;
+}
+
+/*******************************/
+
+.MuiPaper-root .MuiMenu-list .MuiMenuItem-root .quotations {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4791ff;
+  margin-right: 5px;
+}
+
+.MuiPaper-root .MuiMenu-list .MuiMenuItem-root .deliveryOrder {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #eec73d;
+  margin-right: 5px;
+}
+
+.MuiPaper-root .MuiMenu-list .MuiMenuItem-root .paymentCertificate {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #02bc77;
+  margin-right: 5px;
+}
+
+.MuiPaper-root .MuiMenu-list .MuiMenuItem-root .invoice {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff2366;
+  margin-right: 5px;
+}
+/**************************************/
+button {
+  outline: none !important;
+}
+
+button :focus {
+  outline: none !important ;
+}
+
+button :hover {
+  outline: none !important;
+}
+
+/************ for Datepicker css***********/
+.MuiPickersToolbar-toolbar {
+  background: #0053a3 !important;
+}
+/***********************************/

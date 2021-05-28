@@ -1,0 +1,205 @@
+.Sidebar {
+  background: #0053a3;
+  min-height: 100vh;
+}
+.Sidebar > .MuiIconButton-root {
+  padding: 0px;
+  margin: 15px 10px;
+}
+.Sidebar > .MuiIconButton-root svg {
+  fill: #fff;
+}
+.Sidebar .MuiDrawer-paper {
+  width: 230px;
+  background: #0053a3;
+  /* background-image: url("./../../../assets/SidebarBackground.png"); */
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+/* .Sidebar .MuiDrawer-paper::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 54px);
+  top: 48px;
+  background-color: rgba(48, 79, 254, 0.5);
+} */
+.Sidebar .sidebarHeader {
+  background: #0053a3;
+  padding: 10px 10px;
+  display: flex;
+  align-items: center;
+}
+.Sidebar .sidebarHeader > svg {
+  width: 180px;
+  height: auto;
+}
+.Sidebar .sidebarHeader > span {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  margin-left: 10px;
+}
+.Sidebar .sidebarHeader .MuiIconButton-root {
+  margin-right: 0px;
+  padding: 0px;
+  margin-left: 20px;
+}
+.Sidebar .sidebarHeader .MuiIconButton-root svg {
+  width: 20px;
+  height: auto;
+  fill: #fff;
+}
+.Sidebar .outerDivForLists {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+.Sidebar .outerDivForLists .lists {
+  padding: 0px;
+  height: calc(100vh - 170px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: 0px;
+}
+.Sidebar .outerDivForLists .lists .icons {
+  display: flex;
+}
+.Sidebar .outerDivForLists .lists .logout .MuiListItem-root svg path {
+  fill: none !important;
+}
+.Sidebar .outerDivForLists .lists .logout .MuiListItem-root:hover svg path {
+  fill: none !important;
+  stroke: #0053a3 !important;
+}
+.Sidebar .outerDivForLists .lists::-webkit-scrollbar {
+  display: none;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root .MuiTypography-root {
+  color: #fff;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: calc(100% - 88px);
+  height: 1px;
+  background: #fff;
+  bottom: 0px;
+  left: 72px;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root svg path {
+  fill: #fff;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root:hover {
+  background: #fff;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root:hover .MuiTypography-root {
+  color: #0053a3;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root:hover svg {
+  fill: #0053a3;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root:hover svg g {
+  fill: #0053a3;
+}
+.Sidebar .outerDivForLists .lists .MuiListItem-root:hover svg path {
+  fill: #0053a3;
+}
+.Sidebar .sidebarFotter {
+  padding: 10px 0px 10px 10px;
+  font-size: 16px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.Sidebar .sidebarFotter > svg {
+  width: 18px;
+  height: auto;
+  margin-right: 5px;
+}
+
+.Sidebar .profilePart {
+  padding: 15px 10px;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+.Sidebar .profilePart > div {
+  width: calc(100% - 40px);
+}
+.Sidebar .profilePart > div > h5 {
+  font-size: 16px;
+  width: 100%;
+  color: #fff;
+  font-weight: 600;
+  margin: 0px 0px 3px 0px;
+  line-height: normal;
+  cursor: pointer;
+}
+.Sidebar .profilePart > div > span {
+  font-size: 13px;
+  width: 100%;
+  color: #fff;
+  display: block;
+  white-space: normal;
+  word-break: break-all;
+  word-break: break-word;
+  line-height: normal;
+  cursor: pointer;
+}
+
+.Sidebar .profilePart .MuiAvatar-colorDefault {
+  background: #fff;
+  color: #0053a3;
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/********************drawerOpenClass css ***************/
+.drawerOpenClass {
+  width: calc(100% - 230px);
+  background: #fbfbfb;
+  margin-left: 230px;
+}
+.mainContent {
+  width: 100%;
+}
+.mainContent main {
+  padding: 20px !important;
+}
+.drawerOpenClass main {
+  padding: 20px !important;
+}
+/********************************************************/
+.sidebarColor {
+  background: #fff;
+}
+.sidebarColor .icons svg {
+  fill: #0053a3 !important;
+}
+.sidebarColor .icons svg g {
+  fill: #0053a3 !important;
+}
+.sidebarColor .icons svg path {
+  fill: #0053a3 !important;
+}
+.sidebarColor .MuiListItem-root .MuiListItemText-root span {
+  color: #0053a3 !important;
+}
+/************************************************************/

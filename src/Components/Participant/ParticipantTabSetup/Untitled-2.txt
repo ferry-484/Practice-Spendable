@@ -1,0 +1,76 @@
+         return (
+                      (item.firstname =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].firstname
+                          : ""),
+                      (item.lastname =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].lastname
+                          : ""),
+                      (item.email =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].email
+                          : ""),
+                      (item.flagged =
+                        item.isSupporterFlagged === 0 ? "NO" : "YES"),
+                      //SUPPORTER ACTIVATED OR DEACTIVATED
+                      (item.status =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].active === 0
+                            ? "DEACTIVATED"
+                            : "ACTIVATED"
+                          : ""),
+                      (item.address =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].address !== null &&
+                            item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].address !== ""
+                            ? item.fkParticipantConnectedSupporterIdrel.Userdata[0].address.concat(
+                                item.fkParticipantConnectedSupporterIdrel
+                                  .Userdata[0].city &&
+                                  item.fkParticipantConnectedSupporterIdrel
+                                    .Userdata[0].city !== null
+                                  ? " " +
+                                      item.fkParticipantConnectedSupporterIdrel
+                                        .Userdata[0].city
+                                  : ""
+                              )
+                            : ""
+                          : ""),
+                      (item.phonenumber =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].phonenumber !== null
+                            ? item.fkParticipantConnectedSupporterIdrel
+                                .Userdata[0].phonenumber
+                            : ""
+                          : ""),
+                      (item.dob =
+                        item.fkParticipantConnectedSupporterIdrel &&
+                        item.fkParticipantConnectedSupporterIdrel.Userdata
+                          .length > 0
+                          ? item.fkParticipantConnectedSupporterIdrel
+                              .Userdata[0].dob !== null
+                            ? this.formatDate(
+                                item.fkParticipantConnectedSupporterIdrel
+                                  .Userdata[0].dob
+                              )
+                            : ""
+                          : "")

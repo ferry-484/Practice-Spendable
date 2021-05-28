@@ -1,0 +1,107 @@
+.addBuisnessSection > h3 {
+  font-size: 22px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+}
+.addBuisnessSection .addBuisnessForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+.addBuisnessSection
+  .addBuisnessForm
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+
+.addBuisnessSection .addBuisnessForm .MuiInput-underline:after {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+.addBuisnessSection .addBuisnessForm .MuiFormLabel-root.Mui-focused {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+.addBuisnessSection .addBuisnessForm > div {
+  width: calc(33.3% - 15px);
+  margin-right: 15px;
+}
+.addBuisnessSection .addBuisnessForm > div > .MuiFormControl-root {
+  width: 100%;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+.addBuisnessSection .MuiDialogActions-root button {
+  border-radius: 4px;
+}
+
+.addBuisnessSection .MuiDialogActions-root button:nth-child(2) {
+  color: #fff !important;
+  margin-left: 10px;
+}
+
+.addBuisnessSection .MuiDialogActions-root button:nth-child(2):hover {
+  color: #fff !important;
+  margin-left: 10px;
+}
+
+.addBuisnessMemberSection > h3 {
+  font-size: 22px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+}
+.addBuisnessMemberSection .addBuisnessMemberForm {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.addBuisnessMemberSection .addBuisnessMemberForm .MuiFormControl-root {
+  width: 100%;
+}
+
+.addBuisnessMemberSection
+  .addBuisnessMemberForm
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+
+.addBuisnessMemberSection .addBuisnessMemberForm .MuiInput-underline:after {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42) !important;
+}
+.addBuisnessMemberSection
+  .addBuisnessMemberForm
+  .MuiFormLabel-root.Mui-focused {
+  color: rgba(0, 0, 0, 0.54) !important;
+}
+.addBuisnessMemberSection .addBuisnessMemberForm > div {
+  width: calc(33.3% - 15px);
+  margin-right: 15px;
+}
+.addBuisnessMemberSection .addBuisnessMemberForm > div:nth-child(11) {
+  width: calc(33.3% - 15px);
+  margin-right: 33.3%;
+}
+
+.addBuisnessMemberSection .addBuisnessMemberForm > div:nth-child(3) {
+  width: calc(20% - 15px);
+  margin-right: 14%;
+}
+.addBuisnessMemberSection .addBuisnessMemberForm > div:nth-child(3) svg {
+  fill: rgba(0, 0, 0, 0.3);
+}
+
+.addBuisnessMemberSection .MuiDialogActions-root button {
+  border-radius: 4px;
+}
+
+.addBuisnessMemberSection .MuiDialogActions-root button:nth-child(2) {
+  color: #fff !important;
+  margin-left: 10px;
+}
+
+.addBuisnessMemberSection .MuiDialogActions-root button:nth-child(2):hover {
+  color: #fff !important;
+  margin-left: 10px;
+}
+.addBuisnessSection .addBuisnessForm > div:nth-child(18) {
+  width: 100%;
+  margin-top: 15px;
+}

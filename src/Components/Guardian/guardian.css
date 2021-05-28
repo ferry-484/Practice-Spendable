@@ -1,0 +1,57 @@
+.guardianSection > h3 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+}
+
+.guardianSection .formFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.guardianSection .formFlex .searchTextField {
+  width: 250px;
+}
+.guardianSection .formFlex .searchTextField .MuiFormControl-root {
+  width: 100%;
+}
+.guardianSection .formFlex button {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+}
+.guardianSection .addMember > button {
+  margin-left: auto;
+  background: #0053a3;
+  display: flex;
+  color: #fff;
+  margin-bottom: 20px;
+}
+/* addMember */
+.guardianSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
+  cursor: auto;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.guardianSection .ReactTable .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(7) {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  font-weight: 600;
+}
+.guardianMemberSection
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(2) {
+  cursor: auto;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+}

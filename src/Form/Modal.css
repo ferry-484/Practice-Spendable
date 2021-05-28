@@ -1,0 +1,220 @@
+.Modal {
+  width: auto;
+  overflow: hidden;
+}
+
+.Modal::-webkit-scrollbar {
+  width: 0 !important;
+}
+.ModalTitle {
+  color: #000;
+  font-weight: bold;
+}
+
+.Modal {
+  width: 100% !important;
+}
+.modalDialog .MuiDialog-paperWidthSm {
+  max-width: 700px !important;
+  width: 100%;
+}
+
+.modalDialog.loader .MuiDialog-paperWidthSm {
+  height: 300px !important;
+  width: 500px !important;
+}
+.modalDialog.loader .MuiDialogContent-root {
+  min-height: 233px;
+  position: relative;
+}
+.modalDialog.loader .css-42igfv {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 195px;
+  justify-content: center;
+}
+
+/*********************/
+
+.MuiDialogTitle-root {
+  padding: 15px 15px 0px 15px !important;
+}
+.MuiDialogContent-root {
+  padding: 15px !important;
+  border: none !important;
+}
+.MuiDialogActions-root {
+  padding: 10px 0px 0px 0px !important;
+}
+.MuiDialogActions-root button:first-child {
+  background: transparent !important;
+  border: 1px solid #838383 !important;
+  border-radius: 30px;
+  color: #838383 !important;
+  min-width: 100px !important;
+}
+
+.MuiDialogActions-root button:nth-child(2) {
+  background: transparent !important;
+  border: 1px solid #0053a3 !important;
+  border-radius: 30px;
+  color: #0053a3 !important;
+  min-width: 100px !important;
+}
+
+.MuiDialogActions-root button:last-child {
+  color: #000 !important;
+  border-radius: 30px;
+  background: #0053a3 !important;
+  min-width: 100px !important;
+}
+/********************/
+
+.formComponent .MuiFormHelperText-root {
+  color: red !important;
+}
+
+.Modal .formComponent {
+  max-height: calc(100vh - 142px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* -ms-overflow-style: none;
+  scrollbar-width: none; */
+}
+/* .formComponent::-webkit-scrollbar {
+  display: none;
+} */
+
+/****************updatevendorOrderDetails*****************/
+.vendorOrderUpdateClass .MuiDialogContent-root {
+  padding-top: 0px !important;
+}
+.vendorOrderUpdateClass .orderdateInfo {
+  margin: 0px;
+  display: flex;
+  padding: 0px;
+}
+.vendorOrderUpdateClass .orderdateInfo li {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.vendorOrderUpdateClass .orderdateInfo li:first-child {
+  border-right: 1px solid #000;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.vendorOrderUpdateClass .orderdateInfo li span {
+  display: inline-block;
+}
+.vendorOrderUpdateClass .orderdateInfo li span:first-child {
+  margin-right: 5px;
+}
+.vendorOrderUpdateClass .companyvendorInfo {
+  display: flex;
+  margin: 30px -15px 20px -15px;
+}
+.vendorOrderUpdateClass .companyvendorInfo > div {
+  width: calc(50% - 30px);
+  margin: 0px 15px;
+}
+/* .vendorOrderUpdateClass .companyvendorInfo > div:last-child{
+  text-align: right;
+} */
+.vendorOrderUpdateClass .companyvendorInfo > div h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0px;
+}
+.vendorOrderUpdateClass .companyvendorInfo > div h5 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0px 0px 10px 0px;
+}
+
+.vendorOrderUpdateClass .companyvendorInfo > div .addressSection ul {
+  margin: 0px;
+  padding: 0px;
+}
+.vendorOrderUpdateClass .companyvendorInfo > div .addressSection ul li {
+  list-style: none;
+}
+.vendorOrderUpdateClass .companyvendorInfo > div .addressSection ul li span {
+  display: inline-block;
+}
+.vendorOrderUpdateClass .totalPart {
+  border: 1px solid #ccc;
+}
+.vendorOrderUpdateClass .totalPart ul {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 5px 0px;
+  margin: 0px;
+}
+.vendorOrderUpdateClass .totalPart ul li {
+  list-style: none;
+  min-width: 167px;
+}
+.vendorOrderUpdateClass .totalPart ul li span {
+  font-weight: 600;
+  font-size: 16px;
+  color: #000;
+  display: inline-block;
+}
+/************************************************************/
+
+.OrderDetailsUpdateClass.modalDialog .MuiDialog-paperWidthSm {
+  max-width: 600px !important;
+}
+.vendorOrderUpdateClass .modalDialog .MuiDialog-paperWidthSm .Modal {
+  max-width: 600px !important;
+}
+/******************datePicker**********************/
+
+.MuiPickersBasePicker-containerLandscape {
+  padding: 0px !important;
+}
+.MuiPickersCalendarHeader-switchHeader {
+  margin-top: 0px !important;
+  margin-bottom: 4px !important;
+}
+.MuiPickersCalendarHeader-iconButton {
+  padding: 5px !important;
+}
+
+.MuiPickersCalendarHeader-dayLabel {
+  width: 30px !important;
+  margin: 0px !important;
+}
+
+.MuiPickersDay-day {
+  width: 30px !important;
+  height: 30px !important;
+  margin: 0px !important;
+}
+.MuiPickersDay-day .MuiTypography-root {
+  font-size: 12px !important;
+}
+
+.MuiPickersBasePicker-pickerView {
+  justify-content: space-between !important;
+  padding: 0px !important;
+  min-width: 210px !important;
+  min-height: 235px !important;
+}
+.MuiPickersCalendarHeader-transitionContainer .MuiTypography-alignCenter {
+  position: relative !important;
+  font-size: 14px !important;
+}
+.MuiPickersCalendar-transitionContainer {
+  min-height: 180px !important;
+  margin-top: 5px !important;
+}
+.MuiPickersDay-daySelected {
+  background-color: #0053a3 !important;
+}
+.MuiPickersDay-daySelected:hover {
+  background-color: #0053a3 !important;
+}

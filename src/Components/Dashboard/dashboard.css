@@ -1,0 +1,170 @@
+.cardFlex {
+  display: flex;
+  margin: 0px -20px;
+}
+.cardFlex .MuiPaper-root {
+  width: calc(33.3% - 40px);
+  margin: 0px 20px 40px 20px;
+  box-shadow: none;
+  border-radius: 20px;
+  padding: 15px;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root {
+  padding: 0px;
+}
+
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > h3 {
+  font-size: 16px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0px;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > span {
+  width: 55px;
+  height: 50px;
+  /* padding: 5px; */
+  background: #fff;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > span svg {
+  width: 35px;
+  height: auto;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardBody {
+  margin-top: 15px;
+  padding-left: 10px;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardBody span {
+  display: block;
+  color: #fff;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  line-height: normal;
+}
+.cardFlex .MuiPaper-root .MuiCardContent-root .cardBody span:nth-child(2) {
+  font-size: 14px;
+  margin-bottom: 0px;
+  font-weight: normal;
+}
+.cardFlex .MuiPaper-root.businnessCard {
+  background: #eb9c97;
+}
+.cardFlex .MuiPaper-root.businnessCard .cardHeader {
+  background: #c95e56;
+}
+
+.cardFlex .MuiPaper-root.participantCard {
+  background: #3e79f1;
+}
+.cardFlex .MuiPaper-root.participantCard .cardHeader {
+  background: #3163c6;
+}
+
+.cardFlex .MuiPaper-root.guardianCard {
+  background: #efc756;
+}
+.cardFlex .MuiPaper-root.guardianCard .cardHeader {
+  background: #d8ac2f;
+}
+
+.cardFlex .MuiPaper-root.supporterCard {
+  background: #1ce1b3;
+}
+.cardFlex .MuiPaper-root.supporterCard .cardHeader {
+  background: #28b593;
+}
+
+.cardFlex .MuiPaper-root.paymentCard {
+  background: #555498;
+}
+.cardFlex .MuiPaper-root.paymentCard .cardHeader {
+  background: #3f3c71;
+}
+
+@media screen and (min-width: 1500px) {
+  .cardFlex {
+    display: flex;
+    margin: 0px -25px;
+  }
+  .cardFlex .MuiPaper-root {
+    width: calc(33.3% - 50px);
+    margin: 0px 25px 40px 25px;
+    box-shadow: none;
+    border-radius: 20px;
+    padding: 20px 20px 25px 20px;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root {
+    padding: 0px;
+  }
+
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    justify-content: space-between;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > h3 {
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0px;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > span {
+    width: 55px;
+    height: 50px;
+    /* padding: 5px; */
+    background: #fff;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardHeader > span svg {
+    width: 35px;
+    height: auto;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardBody {
+    margin-top: 25px;
+    padding-left: 10px;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardBody span {
+    display: block;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    line-height: normal;
+  }
+  .cardFlex .MuiPaper-root .MuiCardContent-root .cardBody span:nth-child(2) {
+    font-size: 16px;
+    margin-bottom: 0px;
+    font-weight: normal;
+  }
+}
+
+/*********************dashboardSection css******************/
+.dashboardSection {
+  padding: 0px 15px;
+}
+.dashboardSection > h2 {
+  font-size: 22px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+}
+.dashboardSection .cardSection {
+  margin-top: 15px;
+}
+/*************************************************************/
