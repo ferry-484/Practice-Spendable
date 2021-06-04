@@ -154,19 +154,26 @@ class GuardianSupporter extends Component {
               participantOptions: res.data.allUserdata.Userdata.map(item => {
                 return {
                   id: item.id,
-                  name:
+                  name:  
                     item.firstname +
                     " " +
                     (item.lastname != null ? item.lastname : "")
                 };
               }),
               supporterOptions: res.data.id1.Userdata.map(item => {
+                console.log(item)
                 return {
                   id: item.id,
                   supporter:
-                    item.firstname +
-                    " " +
-                    (item.lastname != null ? item.lastname : "")
+                    item.firstname,
+                    supporterlast:
+                    item.lastname,
+                    supporterPhone:
+                      item.phonenumber,
+
+                    //  +
+                    // " " +
+                    // (item.lastname != null ? item.lastname : "")
                 };
               })
               // optionFilter: res.data.allUserdata.Userdata.map(item => {
@@ -274,9 +281,14 @@ class GuardianSupporter extends Component {
                   return {
                     id: item.id,
                     supporter:
-                      item.firstname +
-                      " " +
-                      (item.lastname != null ? item.lastname : "")
+                      item.firstname,
+                      supporterlast:
+                      item.lastname,
+                      supporterPhone:
+                      item.phonenumber,
+                      //  +
+                      // " " +
+                      // (item.lastname != null ? item.lastname : "")
                   };
                 })
               },
@@ -716,8 +728,7 @@ class GuardianSupporter extends Component {
       }
     ];
 
-    const columns = nameColumn.concat(adminSupporterList.columns);
-    //const columns = nameColumn.concat(adminSupporterList.columns).filter(col => ({ }))
+    const columns = nameColumn.concat(adminSupporterList.columns);  
     // .concat(actionButton);
     return (
       <div className="supporterSection">
@@ -857,12 +868,12 @@ class GuardianSupporter extends Component {
                   getOptionLabel={option =>
                     option && option.supporter ? option.supporter : ""
                   }
-                  style={{ width: 300 }}
+                  // style={{ width: 300 }}
                   onChange={(e, v) => this.handleSupporter(e, v)}
                   renderInput={params => (
                     <TextField
                       {...params}
-                      label="Supporter"
+                      label="FirstName"
                       variant="outlined"
                     />
                   )}
@@ -870,6 +881,53 @@ class GuardianSupporter extends Component {
               </FormControl>
             </div>
           </DialogContent>
+                  <h4 style={{ textAlign: "center"}}>or</h4>
+          <DialogContent>
+            <div>
+              <FormControl>
+                <Autocomplete
+                  id="combo-box-demo"
+                  options={this.state.supporterOptions}
+                  getOptionLabel={option =>
+                    option && option.supporterlast ? option.supporterlast : ""
+                  }
+                  // style={{ width: 300 }}
+                  onChange={(e, v) => this.handleSupporter(e, v)}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label="LastName"
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </FormControl>
+            </div>
+          </DialogContent>
+          <h4 style={{ textAlign: "center"}}>or</h4>
+          <DialogContent>
+            <div>
+              <FormControl>
+                <Autocomplete
+                  id="combo-box-demo"
+                  options={this.state.supporterOptions}
+                  getOptionLabel={option =>
+                    option && option.supporterPhone ? option.supporterPhone : ""
+                  }
+                  // style={{ width: 300 }}
+                  onChange={(e, v) => this.handleSupporter(e, v)}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label="PhoneNumber"
+                      variant="outlined"
+                    />
+                  )}
+                />
+              </FormControl>
+            </div>
+          </DialogContent>
+                         
           <DialogButton>
             <Button onClick={() => this.handleClose()}>Cancel</Button>
             <Button

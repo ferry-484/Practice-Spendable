@@ -441,6 +441,7 @@ import { withRouter } from "react-router-dom";
                                 </div>
                             </CardContent>
                         </Card>
+
                         <Card className="supporterCard" onClick={this.supporterRouting}>
                             <CardContent>
                                 <div className="cardHeader">
@@ -557,9 +558,16 @@ import { withRouter } from "react-router-dom";
                                 </div>
                             </CardContent>
                         </Card>
-                    </div>
+
+
                 </div>
-            </div>
+
+                
+                </div>
+
+                
+                </div> 
+            
         );
     }
 }

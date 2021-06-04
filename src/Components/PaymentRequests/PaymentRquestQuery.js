@@ -1,4 +1,4 @@
-export const paymentGuardianRequestAllQuery = (guardianId)=> `
+export const paymentGuardianRequestAllQuery = (guardianId) => `
 query($where:JSON){
   allPaymentRequests(where:$where){
     totalCount
@@ -64,13 +64,19 @@ query($where:JSON){
             cardstatus
           }
         }
+        fkPaymentRequestStoreIdrel{
+          Businesses{
+            id
+            storeName
+          }
+        }
     }
   }
 }`;
 
-
-export const paymentGuardianRequestQuery = (guardianId)=> `
+export const paymentGuardianRequestQuery = (guardianId) => `
 query($where:JSON,$last: Int, $first: Int){
+  
   allPaymentRequests(where:$where,last:$last,first:$first){
     totalCount
 			PaymentRequests{
@@ -110,7 +116,7 @@ query($where:JSON,$last: Int, $first: Int){
         Userdata{
           id
           firstname
-          lastname
+          lastname 
         }
       }
         fkPaymentRequestBusinessMemberIdrel{
@@ -135,10 +141,15 @@ query($where:JSON,$last: Int, $first: Int){
             cardstatus
           }
         }
+        fkPaymentRequestStoreIdrel{
+          Businesses{
+            id
+            storeName
+          }
+        }
     }
   }
 }`;
-
 
 export const paymentQuery = `
 query($where:JSON,$last: Int, $first: Int){
@@ -267,6 +278,7 @@ query($where:JSON,$last: Int, $first: Int){
     }
   }
 }
+
 `;
 
 export const disputeQuery = `query allDisputes ($where:JSON){
@@ -301,7 +313,7 @@ mutation {
 }
 `;
 
-export const updateCardStatus = id =>
+export const updateCardStatus = (id) =>
   `
 mutation  {
     saveCardDetail(obj: {id: ${id}, cardstatus: "1"}) {
@@ -378,3 +390,11 @@ export const updateUserBudget = `
     }
   }
 `;
+
+// allPaymentRequests(where:$where,last:$last,first:$first){
+//   edges{
+//     node{
+//       participantId
+//     }
+//   }
+// }

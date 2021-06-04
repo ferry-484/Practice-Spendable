@@ -20,7 +20,7 @@ export const allBusinessesInfo = id => `query{
   allBusinesses(where:{id:${id}}){
     Businesses{
       id
-      storeName
+      storeName  
       abnNumber
       mobileNo
       storeTelephoneNo

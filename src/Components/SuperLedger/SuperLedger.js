@@ -247,7 +247,7 @@ export default class SuperLedger extends Component {
                   phonenumber: item.mobileNo,
                   name: item.storeName
                 };
-              })
+              })  
             })
           : this.setState({ loading: true });
       })
@@ -1120,6 +1120,8 @@ export default class SuperLedger extends Component {
               )}
             />
           </FormControl>
+          
+          
         </div>
 
         <div className="actions">
@@ -1143,14 +1145,14 @@ export default class SuperLedger extends Component {
           <div className="superledgerTable">
             <ReactTableComponent
               listData={this.state.listData}
-              listConfig={superLedgerList}
+              listConfig={superLedgerList}  
               columns={columns}
               dataCount={this.state.count}
               updatePagination={this.updatePagination}
               initialPage={this.state.pageNo / this.state.rows}
               onRowClick={() => {}}
               forSerialNo={{
-                pageNo: this.state.pageNo,
+                pageNo: this.state.pageNo,  
                 pageSize: this.state.rows
               }}
             />

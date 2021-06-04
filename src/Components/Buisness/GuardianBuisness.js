@@ -9,7 +9,7 @@ import {
   Dialog,
   Typography,
   Input,
-  TextField
+  TextField,
 } from "@material-ui/core";
 import ReactTableComponent from "../../ReactTable/ReactTable";
 import { adminBuisnessList } from "./BuisnessConfig";
@@ -28,7 +28,7 @@ import {
   saveParticipantBusinessQuery,
   dropdownQuery,
   guardiandropdownQuery,
-  getCardDetailsQuery
+  getCardDetailsQuery,
 } from "./BuisnessQuery";
 import { participantQuery } from "../Participant/ParticipantQuery";
 // import {businessQuery} from "../Buisness/BuisnessQuery"
@@ -46,24 +46,24 @@ const MenuProps = {
   PaperProps: {
     style: {
       maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250
-    }
-  }
+      width: 250,
+    },
+  },
 };
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
   },
   closeButton: {
     position: "absolute",
     right: theme.spacing(1),
     top: theme.spacing(1),
-    color: theme.palette.grey[500]
-  }
+    color: theme.palette.grey[500],
+  },
 });
 
-const DialogTitle = withStyles(styles)(props => {
+const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
@@ -81,17 +81,17 @@ const DialogTitle = withStyles(styles)(props => {
   );
 });
 
-const DialogContent = withStyles(theme => ({
+const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2)
-  }
+    padding: theme.spacing(2),
+  },
 }))(MuiDialogContent);
 
-const DialogButton = withStyles(theme => ({
+const DialogButton = withStyles((theme) => ({
   root: {
     margin: 0,
-    padding: theme.spacing(1)
-  }
+    padding: theme.spacing(1),
+  },
 }))(MuiDialogActions);
 
 class GuardianBuisness extends Component {
@@ -112,7 +112,7 @@ class GuardianBuisness extends Component {
       filter: {
         // adminId: JSON.parse(localStorage.getItem("userInfo")).id,
         active: 1,
-        order: "id desc"
+        order: "id desc",
       },
       search: "",
       count: 0,
@@ -121,7 +121,7 @@ class GuardianBuisness extends Component {
       storeId: undefined,
       participantxyz: null,
       openModalCard: false,
-      cardData: []
+      cardData: [],
     };
   }
 
@@ -133,29 +133,31 @@ class GuardianBuisness extends Component {
       obj.guardianId = JSON.parse(localStorage.getItem("userInfo")).id;
     }
     fetchMethod(guardiandropdownQuery, { where: obj })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         res.data.allUserdata != undefined &&
         res.data.allBusinesses !== undefined
           ? this.setState(
               {
-                participantOptions: res.data.allUserdata.Userdata.map(item => {
-                  return {
-                    id: item.id,
-                    name:
-                      item.firstname +
-                      " " +
-                      (item.lastname != null ? item.lastname : "")
-                  };
-                }),
-                BusinessesOptions: res.data.allBusinesses.Businesses.map(
-                  item => {
+                participantOptions: res.data.allUserdata.Userdata.map(
+                  (item) => {
                     return {
                       id: item.id,
-                      business: item.storeName
+                      name:
+                        item.firstname +
+                        " " +
+                        (item.lastname != null ? item.lastname : ""),
                     };
                   }
-                )
+                ),
+                BusinessesOptions: res.data.allBusinesses.Businesses.map(
+                  (item) => {
+                    return {
+                      id: item.id,
+                      business: item.storeName,
+                    };
+                  }
+                ),
               },
               () => {
                 // this.BusinessmodalDropdownData(this.state.temp);
@@ -163,7 +165,7 @@ class GuardianBuisness extends Component {
             )
           : this.setState({ loading: true });
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   }
   resetFilters = () => {
     delete this.state.filter.participantId;
@@ -172,28 +174,28 @@ class GuardianBuisness extends Component {
     this.setState(
       {
         participantxyz: null,
-        ["participantId"]: undefined
+        ["participantId"]: undefined,
       },
       () => {
         this.getBuisnessData();
       }
     );
   };
-  BusinessmodalDropdownData = e => {
+  BusinessmodalDropdownData = (e) => {
     fetchMethod(dropdownQuery)
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         res.data.allBusinesses !== undefined
           ? this.setState(
               {
                 BusinessesOptions: res.data.allBusinesses.Businesses.map(
-                  item => {
+                  (item) => {
                     return {
                       id: item.id,
-                      business: item.storeName
+                      business: item.storeName,
                     };
                   }
-                )
+                ),
               },
               () => {
                 // this.BusinessmodalDropdownData(this.state.temp);
@@ -211,7 +213,7 @@ class GuardianBuisness extends Component {
           //   console.log("$$$$$$$$$$$$$$$$$$$", i);
           // });
           let businessId = e.map(
-            i => i.fkParticipantConnectedBusinessStoreIdrel.Businesses[0].id
+            (i) => i.fkParticipantConnectedBusinessStoreIdrel.Businesses[0].id
           );
 
           for (let i = 0; i < businessId.length; i++) {
@@ -224,16 +226,16 @@ class GuardianBuisness extends Component {
         } else {
         }
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   };
   getBuisnessData = () => {
     fetchMethod(businessQuery, {
       where: this.state.filter,
       last: this.state.rows,
-      first: this.state.pageNo
+      first: this.state.pageNo,
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res && res.error && res.error.statusCode === 401) {
           swal({ title: res.error.message, icon: "warning" }).then(() => {
             localStorage.clear();
@@ -252,11 +254,11 @@ class GuardianBuisness extends Component {
               res.data.allBusinesses &&
               res.data.allBusinesses !== null
                 ? res.data.allBusinesses.Businesses
-                : ""
+                : "",
           });
         }
       })
-      .catch(e => {
+      .catch((e) => {
         swal({ title: e.message, icon: "warning" });
         this.setState({ listData: [] });
       });
@@ -267,11 +269,11 @@ class GuardianBuisness extends Component {
     fetchMethod(businessParticipantQuery, {
       where: this.state.filter,
       last: this.state.rowsnewNo,
-      first: this.state.pagenewNo
+      first: this.state.pagenewNo,
     })
-      .then(res => res.json())
+      .then((res) => res.json())
       .then(
-        res => {
+        (res) => {
           if (res && res.error && res.error.statusCode === 401) {
             swal({ title: res.error.message, icon: "warning" }).then(() => {
               localStorage.clear();
@@ -283,7 +285,7 @@ class GuardianBuisness extends Component {
                 .ParticipantConnectedBusinesses
             );
             res.data.allParticipantConnectedBusinesses.ParticipantConnectedBusinesses.map(
-              item => {
+              (item) => {
                 return (
                   (item.storeName =
                     item.fkParticipantConnectedBusinessStoreIdrel.Businesses &&
@@ -350,7 +352,7 @@ class GuardianBuisness extends Component {
                 res.data.allParticipantConnectedBusinesses !== null
                   ? res.data.allParticipantConnectedBusinesses
                       .ParticipantConnectedBusinesses
-                  : ""
+                  : "",
             });
           }
         },
@@ -358,20 +360,20 @@ class GuardianBuisness extends Component {
           // this.BusinessmodalDropdownData();
         }
       )
-      .catch(e => {
+      .catch((e) => {
         swal({ title: e.message, icon: "warning" });
         this.setState({ listData: [] });
       });
   };
 
-  handleEditModal = data => {
+  handleEditModal = (data) => {
     this.props.history.push({
       pathname: "/editBuisness",
-      state: { details: data.id }
+      state: { details: data.id },
     });
   };
 
-  adminBuisnessInfo = data => {
+  adminBuisnessInfo = (data) => {
     let id =
       data.fkParticipantConnectedBusinessStoreIdrel &&
       data.fkParticipantConnectedBusinessStoreIdrel.Businesses[0]
@@ -379,7 +381,7 @@ class GuardianBuisness extends Component {
         : data.id;
     this.props.history.push({
       pathname: "/buisnessInfo",
-      state: { details: id }
+      state: { details: id },
       // state: { details: data.id }
     });
   };
@@ -394,7 +396,7 @@ class GuardianBuisness extends Component {
 
   handleFilter = (e, v) => {
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
 
     const { filter } = this.state;
@@ -403,22 +405,22 @@ class GuardianBuisness extends Component {
       {
         [name]: value,
         filter,
-        storeId: undefined
+        storeId: undefined,
       },
       () => this.getBuisnessParticipantData()
     );
   };
 
-  handleBuisnessFilter = e => {
+  handleBuisnessFilter = (e) => {
     const {
-      target: { name, value }
+      target: { name, value },
     } = e;
 
     const { filter } = this.state;
     filter[name] = value;
     this.setState({
       [name]: value,
-      filter
+      filter,
     });
   };
 
@@ -430,7 +432,7 @@ class GuardianBuisness extends Component {
         {
           filter,
           participantxyz: v,
-          ["participantId"]: v.id
+          ["participantId"]: v.id,
         },
         () => {
           this.getBuisnessParticipantData();
@@ -445,7 +447,7 @@ class GuardianBuisness extends Component {
     filter["participantId"] = this.state.participantId;
     this.setState(
       {
-        filter
+        filter,
       },
       () => this.getBuisnessParticipantData()
     );
@@ -457,17 +459,17 @@ class GuardianBuisness extends Component {
         storeId: this.state.storeId,
         participantId: this.state.participantId,
         createdBy: `${JSON.parse(localStorage.getItem("userInfo")).id}`,
-        updatedBy: `${JSON.parse(localStorage.getItem("userInfo")).id}`
+        updatedBy: `${JSON.parse(localStorage.getItem("userInfo")).id}`,
       };
       fetchMethod(saveParticipantBusinessQuery, { obj: test })
-        .then(res => res.json())
-        .then(response => {
+        .then((res) => res.json())
+        .then((response) => {
           const id = response.data.saveParticipantConnectedBusiness;
           if (id && id !== null) {
             this.filterData();
             swal({
               text: "Participant connected successfully",
-              icon: "success"
+              icon: "success",
             });
             this.handleClose();
           } else {
@@ -476,14 +478,14 @@ class GuardianBuisness extends Component {
         });
 
       this.setState({
-        storeId: undefined
+        storeId: undefined,
       });
     } else {
       swal({ title: "Please select business", icon: "warning" });
     }
   };
 
-  viewMember = data => {
+  viewMember = (data) => {
     let id =
       data.fkParticipantConnectedBusinessStoreIdrel &&
       data.fkParticipantConnectedBusinessStoreIdrel.Businesses[0]
@@ -491,31 +493,31 @@ class GuardianBuisness extends Component {
         : data.id;
     this.props.history.push({
       pathname: "/buisnessMember",
-      state: { details: id }
+      state: { details: id },
     });
   };
 
-  handleDelete = row => {
+  handleDelete = (row) => {
     if (row.active === 1 || row.active === "1") {
       swal({
         title: "Are you sure you really want to delete this record",
         icon: "warning",
         buttons: true,
-        dangerMode: true
-      }).then(willDelete => {
+        dangerMode: true,
+      }).then((willDelete) => {
         if (willDelete) {
           const test = {
             id: row.id,
-            active: 0
+            active: 0,
           };
 
           fetchMethod(saveBusiness, { obj: test })
-            .then(res => res.json())
-            .then(res => {
+            .then((res) => res.json())
+            .then((res) => {
               const id = res.data.saveBusiness.id;
               swal({
                 title: id ? "Deleted successfully" : "Error deleting",
-                icon: "success"
+                icon: "success",
               });
               if (id) {
                 let pageNo = this.state.pageNo;
@@ -545,7 +547,7 @@ class GuardianBuisness extends Component {
                 );
               }
             })
-            .catch(e => {
+            .catch((e) => {
               swal({ title: e.message, icon: "warning" });
               this.setState({ listData: [] });
             });
@@ -556,7 +558,7 @@ class GuardianBuisness extends Component {
   handleBusiness = (e, v) => {
     if (v !== null && v !== undefined) {
       this.setState({
-        storeId: v.id
+        storeId: v.id,
       });
     }
   };
@@ -581,7 +583,7 @@ class GuardianBuisness extends Component {
       this.setState(
         {
           pagenewNo: pageNumber,
-          rowsnewNo: size
+          rowsnewNo: size,
         },
         () => {
           this.getBuisnessParticipantData();
@@ -591,7 +593,7 @@ class GuardianBuisness extends Component {
       this.setState(
         {
           pageNo: pageNumber,
-          rows: size
+          rows: size,
         },
         () => {
           this.getBuisnessData();
@@ -601,13 +603,13 @@ class GuardianBuisness extends Component {
   };
   getCardDetails(businessid) {
     fetchMethod(getCardDetailsQuery, {
-      where: { businessId: businessid }
+      where: { businessId: businessid },
     })
-      .then(resp => resp.json())
-      .then(resp => {
+      .then((resp) => resp.json())
+      .then((resp) => {
         resp.data.allCardDetails.CardDetails.length > 0
           ? this.setState({
-              cardData: resp.data.allCardDetails.CardDetails.map(item => {
+              cardData: resp.data.allCardDetails.CardDetails.map((item) => {
                 return {
                   id: item.id,
                   businessid: businessid,
@@ -621,10 +623,10 @@ class GuardianBuisness extends Component {
                   BSB: item.bsb,
                   cardType: item.fkcardtypeidrel.Cardtypes[0]
                     ? item.fkcardtypeidrel.Cardtypes[0].cardtype
-                    : ""
+                    : "",
                   // url: item.itemImageUrl
                 };
-              })
+              }),
             })
           : this.setState({ loading: true });
 
@@ -661,12 +663,12 @@ class GuardianBuisness extends Component {
         //   // console.log("res e;se  data", data);
         // }
       })
-      .catch(error => {
+      .catch((error) => {
         swal({ title: error.message, icon: "warning" });
       });
     // console.log("id test..........................", item);
   }
-  openModalCard = data => {
+  openModalCard = (data) => {
     // <div>hello</div>;
     let id =
       data.fkParticipantConnectedBusinessStoreIdrel &&
@@ -674,7 +676,7 @@ class GuardianBuisness extends Component {
         ? data.fkParticipantConnectedBusinessStoreIdrel.Businesses[0].id
         : data.id;
     this.setState({
-      openModalCard: true
+      openModalCard: true,
       // flagged: data.flagged,
       // supporterId: data.supporterId
     });
@@ -683,7 +685,7 @@ class GuardianBuisness extends Component {
   handleCloseCard = () => {
     this.setState({
       openModalCard: false,
-      cardData: []
+      cardData: [],
       // flagged: undefined,
       // businessId: undefined
     });
@@ -692,14 +694,14 @@ class GuardianBuisness extends Component {
     const nameColumn = [
       {
         Header: "S No.",
-        Cell: row => {
+        Cell: (row) => {
           return <div className="dot">{row.original.sNo}</div>;
         },
-        width: 45
+        width: 45,
       },
       {
         Header: "Store Name",
-        Cell: row => {
+        Cell: (row) => {
           return (
             <div
               onClick={() => {
@@ -709,15 +711,15 @@ class GuardianBuisness extends Component {
               {row.original.storeName}
             </div>
           );
-        }
-      }
+        },
+      },
     ];
 
     const actionButton = [
       {
         Header: "View Members",
         sortable: false,
-        Cell: row => (
+        Cell: (row) => (
           <div
             onClick={() => {
               this.viewMember(row.original);
@@ -725,12 +727,12 @@ class GuardianBuisness extends Component {
           >
             <span>View</span>
           </div>
-        )
+        ),
       },
       {
         Header: "View Card",
         sortable: false,
-        Cell: row => (
+        Cell: (row) => (
           <div
             onClick={() => {
               this.openModalCard(row.original);
@@ -740,8 +742,8 @@ class GuardianBuisness extends Component {
               <u>View</u>
             </span>
           </div>
-        )
-      }
+        ),
+      },
       // {
       //   Header: "",
       //   sortable: false,
@@ -923,11 +925,11 @@ class GuardianBuisness extends Component {
                 value={this.state.participantxyz}
                 options={this.state.participantOptions}
                 onChange={(e, v) => this.handleParticipantfilter(e, v)}
-                getOptionLabel={option =>
+                getOptionLabel={(option) =>
                   option && option.name ? option.name : ""
                 }
                 // style={{ width: 300 }}
-                renderInput={params => (
+                renderInput={(params) => (
                   <TextField
                     {...params}
                     label="Participants"
@@ -937,6 +939,7 @@ class GuardianBuisness extends Component {
               />
             </FormControl>
           </div>
+    
           <div>
             <Button className="resetBtn" onClick={this.resetFilters}>
               Reset
@@ -971,7 +974,7 @@ class GuardianBuisness extends Component {
                 this.state.participantId
                   ? {
                       pageNo: this.state.pagenewNo,
-                      pageSize: this.state.rowsnewNo
+                      pageSize: this.state.rowsnewNo,
                     }
                   : { pageNo: this.state.pageNo, pageSize: this.state.rows }
               }
@@ -1027,11 +1030,11 @@ class GuardianBuisness extends Component {
                   value={this.state.storeId}
                   options={this.state.BusinessesOptions}
                   onChange={(e, v) => this.handleBusiness(e, v)}
-                  getOptionLabel={option =>
+                  getOptionLabel={(option) =>
                     option && option.business ? option.business : ""
                   }
                   style={{ width: 300 }}
-                  renderInput={params => (
+                  renderInput={(params) => (
                     <TextField
                       {...params}
                       label="Business"

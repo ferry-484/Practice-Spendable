@@ -15,7 +15,7 @@ query($where:JSON,$last: Int, $first: Int){
       active
     }
   }
-}
+}  
 `;
 
 export const getSupporterData = id => `
@@ -138,6 +138,7 @@ query{
       id
       firstname
       lastname
+      phonenumber
     }
   }
    id1:allUserdata(where:{role:"PARTICIPANT",active:1}){
@@ -145,6 +146,7 @@ query{
       id
       firstname
       lastname
+      phonenumber
     }
   }
 }

@@ -47,6 +47,11 @@ export const adminPaymentRequestList = {
       accessor: "paymentStatus",
       sortable: false
     },
+     {
+       Header: "Store Name",
+       accessor: "storeName",
+       sortable: false
+     },
     {
       Header: "PPAN",
       accessor: "cardNumber",

@@ -268,7 +268,7 @@ class GuardianParticipant extends Component {
       <div className="participantSection">
         <h2>Participant</h2>
         <div className="formFlex">
-          <div className="searchTextField">
+        <div className="searchTextField">
             <TextField
               type="text"
               placeholder="By First, Last Name"

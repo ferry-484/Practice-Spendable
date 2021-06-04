@@ -15,6 +15,7 @@
 .participantSection .formFlex .searchTextField {
   width: 250px;
 }
+
 .participantSection .formFlex .searchTextField .MuiFormControl-root {
   width: 100%;
 }
@@ -38,9 +39,11 @@
   justify-content: space-between;
   margin-bottom: 15px;
 }
-.guardianParticipantSection .formFlex .searchTextField {
+ .guardianParticipantSection .formFlex .searchTextField {
   width: 250px;
-}
+} 
+
+
 .guardianParticipantSection .formFlex .searchTextField .MuiFormControl-root {
   width: 100%;
 }

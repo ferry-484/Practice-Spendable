@@ -188,6 +188,7 @@ class AdminPaymentRequest extends Component {
     fetchMethod(paymentQuery, obj)
       .then(res => res.json())
       .then(res => {
+        console.log(res);
         if (res && res.error && res.error.statusCode === 401) {
           swal({ title: res.error.message, icon: "warning" }).then(() => {
             localStorage.clear();

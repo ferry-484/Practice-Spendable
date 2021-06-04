@@ -127,6 +127,7 @@ export default class SupporterInfo extends Component {
                     </div>
                   </div>
 
+
                   <span className="address" style={{ display: "block" }}>
                     {this.state.supporterData.address !== null
                       ? this.state.supporterData.address
