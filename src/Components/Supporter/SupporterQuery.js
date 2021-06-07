@@ -71,7 +71,7 @@ query{
       zipcode
       role
       }
-  }
+  }  
 }
 `;
 

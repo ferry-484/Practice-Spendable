@@ -39,6 +39,7 @@ import EditItemCategory from "../ItemCategory/EditItemCategory";
 import Profile from "../Profile/Profile";
 import ItemCategory from "../ItemCategory/ItemCategory";
 import CardDetails from "../Participant/CardDetails/CardDetails";
+import CardLimit from "../Participant/CardLimit"
 import AddFunds from "../SuperLedger/AddFunds";
 import Budget from "../Budget/Budget";
 import AddBudget from "../Budget/AddBudget";
@@ -90,6 +91,16 @@ function Routes() {
           render={(e, props) => (
             <SideBar>
               <Guardian {...e} data={props} />
+            </SideBar>
+          )}
+        />
+
+        <Route
+          exact={true}
+          path="/cardlimit"
+          render={(e, props) => (
+            <SideBar>
+              <CardLimit {...e} data={props} />
             </SideBar>
           )}
         />

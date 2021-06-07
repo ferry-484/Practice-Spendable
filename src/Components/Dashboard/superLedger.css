@@ -1,0 +1,394 @@
+.categorySection > h2 {
+  font-size: 20px;
+  margin: 0px;
+  font-weight: 600;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+}
+
+.categorySection .formFlex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.categorySection .formFlex .searchTextField {
+  width: 250px;
+}
+.categorySection .formFlex .searchTextField .MuiFormControl-root {
+  width: 100%;
+}
+.categorySection .formFlex button {
+  margin-left: 10px;
+  background: #0053a3;
+  color: #fff;
+}
+
+/* .guardiancategorySection > h2 {
+      font-size: 20px;
+      margin: 0px;
+      font-weight: 600;
+      color: #000;
+      margin: 0px 0px 10px 0px;
+    }
+    
+    .guardiancategorySection .formFlex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+    .guardiancategorySection .formFlex .searchTextField {
+      width: 250px;
+    }
+    .guardiancategorySection .formFlex .searchTextField .MuiFormControl-root {
+      width: 100%;
+    }
+    .guardiancategorySection .formFlex button {
+      margin-left: 10px;
+      background: #0053a3;
+      color: #fff;
+    }
+     */
+/***************************categoryTab******************************/
+.categoryTab {
+  margin-top: 30px;
+}
+.categoryTab .MuiAppBar-colorPrimary {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.categoryTab .MuiAppBar-colorPrimary .MuiTabs-indicator {
+  display: none;
+}
+.categoryTab .MuiAppBar-colorPrimary .MuiTabs-flexContainer > button {
+  font-weight: 600;
+  border-radius: 4px 4px 0px 0px;
+}
+.categoryTab
+  .MuiAppBar-colorPrimary
+  .MuiTabs-flexContainer
+  > button.Mui-selected {
+  background: #fff;
+  border-radius: 4px 4px 0px 0px;
+  color: #0053a3;
+  font-weight: 600;
+  border: 1px solid #ccc;
+  border-bottom: none;
+}
+
+.categoryTab .MuiTypography-root {
+  border: 1px solid #ccc;
+}
+
+.categoryTab .MuiBox-root {
+  background: #fff;
+}
+/*************************************************************************/
+
+.categorySection
+  .admincategoryTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(2) {
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.guardiancategorySection
+  .admincategoryTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(2) {
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.guardiancategorySection
+  .admincategoryTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(7) {
+  font-weight: 600;
+  font-size: 13px;
+  /* text-decoration: underline; */
+  cursor: auto;
+}
+/*************************companyTabHeaderProfileDetails css*******************/
+
+.companyTabHeaderProfileDetails .categoryName {
+  display: flex;
+  align-items: center;
+}
+.companyTabHeaderProfileDetails .categoryName .Image {
+  width: 60px;
+  height: 60px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+}
+.companyTabHeaderProfileDetails .categoryName .Image img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.companyTabHeaderProfileDetails .categoryName > h5 {
+  font-size: 18px;
+  color: #000;
+  margin: 0px 0px 0px 0px;
+}
+.companyTabHeaderProfileDetails .categoryName .editLink {
+  margin-right: 0px;
+  margin-left: auto;
+}
+.companyTabHeaderProfileDetails .categoryName .editLink button {
+  color: #ff952a;
+  border: 1px solid #ff952a;
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.companyTabHeaderProfileDetails .categoryName .editLink button:hover {
+  background: #fff;
+}
+.companyTabHeaderProfileDetails .categoryName .editLink button img {
+  width: 16px;
+  height: auto;
+}
+
+
+.companyTabHeaderProfileDetails .categoryInformationDetails {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+.companyTabHeaderProfileDetails .categoryInformationDetails li:nth-child(1) {
+  width: 25%;
+}
+.companyTabHeaderProfileDetails .categoryInformationDetails li {
+  list-style: none;
+  width: 25%;
+}
+.companyTabHeaderProfileDetails .categoryInformationDetails li span {
+  display: block;
+  color: #000;
+  font-size: 16px;
+  line-height: normal;
+}
+.companyTabHeaderProfileDetails
+  .categoryInformationDetails
+  li
+  span:nth-child(1) {
+  margin-bottom: 5px;
+  font-weight: 600;
+}
+/*******************************************************************************/
+
+/*************************categoryDocumentVerifivation table css****************/
+.categoryDocumentVerifivation {
+  width: 80%;
+  margin-top: 20px;
+}
+.categoryDocumentVerifivation table {
+  display: block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.categoryDocumentVerifivation table thead {
+  display: block;
+  background: rgba(0, 83, 163, 0.2);
+}
+.categoryDocumentVerifivation table thead tr {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.categoryDocumentVerifivation table thead tr th:nth-child(1) {
+  width: 100px;
+}
+.categoryDocumentVerifivation table thead tr th {
+  width: calc(50% - 50px);
+  padding: 10px 10px;
+  display: block;
+  font-size: 14px;
+  color: #000;
+  font-weight: 600;
+  border-bottom: none;
+  text-align: left;
+}
+.categoryDocumentVerifivation table tbody {
+  display: block;
+}
+.categoryDocumentVerifivation table tbody tr {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+}
+.categoryDocumentVerifivation table tbody tr:nth-child(2n) {
+  background: rgba(0, 83, 163, 0.2);
+}
+.categoryDocumentVerifivation table tbody tr:last-child {
+  border-bottom: none;
+}
+.categoryDocumentVerifivation table tbody tr td:nth-child(1) {
+  width: 100px;
+}
+.categoryDocumentVerifivation table tbody tr td {
+  display: block;
+  width: calc(50% - 50px);
+  font-size: 14px;
+  color: #000;
+  padding: 10px 10px;
+  border-bottom: none;
+}
+/**********************************************************************************/
+
+/***********************************editItemHead css************************/
+.addSupporterForm .editItemHead .addAdminParticipantForm {
+  max-width: 250px;
+  min-width: 250px;
+}
+
+/*****************************************************************************/
+
+/*************superledgerTablevcss************************/
+/* .superledgerTable .ReactTable .rt-thead .rt-tr .rt-th:nth-child(1) {
+  min-width: 60px;
+} */
+/* .superledgerTable
+  .ReactTable
+  .rt-tbody
+  .rt-tr-group
+  .rt-tr
+  .rt-td:nth-child(1) {
+  min-width: 60px;
+} */
+/****************************************************************/
+
+.ledgerSection > h2 {
+  font-size: 20px;
+  color: #000;
+  margin: 0px 0px 10px 0px;
+  font-weight: 600;
+  width: 100%;
+}
+
+.ledgerSection .addfundBtn {
+  margin-right: 0px;
+  margin-left: auto;
+  display: block;
+  color: #fff;
+  background: #0053a3;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.ledgerSection .addfundBtn:hover {
+  color: #fff;
+  background: #0053a3;
+}
+
+/**********************addAdminFundForm css*****************/
+.addAdminFundForm {
+  display: flex;
+}
+.addAdminFundForm > div {
+  width: calc(33.3% - 15px);
+  margin-right: 15px;
+}
+/**************************************************************/
+
+/*******************SuperledgerSection css********************/
+.SuperledgerSection {
+  display: flex;
+  flex-wrap: wrap;
+}
+.SuperledgerSection > div {
+  width: 100%;
+}
+.SuperledgerSection > div .MuiFormControl-root {
+  width: 250px;
+  margin-right: 15px;
+}
+.SuperledgerSection > h2 {
+  font-size: 20px;
+  color: #000;
+  margin: 0px 0px 15px 0px;
+  font-weight: 600;
+  width: 100%;
+}
+.SuperledgerSection .actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.SuperledgerSection .resetBtn {
+  margin-right: 0px;
+  margin-left: 0px;
+  display: block;
+  color: #fff;
+  background: #0053a3;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.SuperledgerSection .resetBtn:hover {
+  color: #fff;
+  background: #0053a3;
+}
+.SuperledgerSection .addfundBtn {
+  margin-right: 0px;
+  margin-left: 15px;
+  display: block;
+  color: #fff;
+  background: #0053a3;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+.SuperledgerSection .addfundBtn:hover {
+  color: #fff;
+  background: #0053a3;
+}
+
+/*************************************************************/
+
+.chooseBuisness.superledgerAddfundModal .amountfield {
+  width: 300px;
+  /* width: 100%; */
+  margin-top: 15px;
+}
+.chooseBuisness.superledgerAddfundModal
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiInputLabel-outlined.MuiInputLabel-shrink {
+  transform: translate(15px, -6px) scale(0.75);
+}
+.chooseBuisness.superledgerAddfundModal
+  .MuiDialogContent-root
+  .MuiFormControl-root {
+  width: 300px;
+}
+.chooseBuisness.superledgerAddfundModal
+  .MuiDialogContent-root
+  .MuiFormControl-root
+  .MuiAutocomplete-root {
+  margin-bottom: 15px;
+}
+
+.chooseBuisness.superledgerAddfundModal .MuiDialogTitle-root h6 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}

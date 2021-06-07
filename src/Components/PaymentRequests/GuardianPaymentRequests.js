@@ -251,7 +251,7 @@ class GuardianPaymentRequest extends Component {
                     item.fkPaymentRequestCreatedbyCardIdrel.CardDetails[0]
                       .cardstatus === null
                     ? "UNBLOCK"
-                    : "BLOCK"  
+                    : "BLOCK"
                   : ""),
               // (item.cardLimit =
               //   item.fkPaymentRequestCreatedbyCardIdrel.CardDetails &&
@@ -316,20 +316,19 @@ class GuardianPaymentRequest extends Component {
                   ? item.fkPaymentRequestItemCategoryIdrel
                       .MasterItemCategories[0].categoryName
                   : ""),
-                  (item.storeName =
-                  item.fkPaymentRequestStoreIdrel &&
-                  item.fkPaymentRequestStoreIdrel !== null && 
-                  item.fkPaymentRequestStoreIdrel.Businesses &&
-                  item.fkPaymentRequestStoreIdrel.Businesses.length > 0 &&
-                  item.fkPaymentRequestStoreIdrel.Businesses[0]
-                    ? item.fkPaymentRequestStoreIdrel.Businesses[0].storeName
-                    : ""),
+              (item.storeName =
+                item.fkPaymentRequestStoreIdrel &&
+                item.fkPaymentRequestStoreIdrel !== null &&
+                item.fkPaymentRequestStoreIdrel.Businesses &&
+                item.fkPaymentRequestStoreIdrel.Businesses.length > 0 &&
+                item.fkPaymentRequestStoreIdrel.Businesses[0]
+                  ? item.fkPaymentRequestStoreIdrel.Businesses[0].storeName
+                  : ""),
               (item.requestedAmount =
                 item.requestedAmount !== undefined &&
                 item.requestedAmount !== null
                   ? `$${item.requestedAmount}`
                   : ""),
-
               (item.createdAt =
                 item.createdAt !== undefined && item.createdAt !== null
                   ? this.formatDate(item.createdAt)
@@ -534,6 +533,7 @@ class GuardianPaymentRequest extends Component {
       }
     );
   };
+
   updatePagination = (pageNumber, size) => {
     this.setState(
       {
@@ -681,27 +681,28 @@ class GuardianPaymentRequest extends Component {
             window.location = "/";
           });
         } else {
-          res.data.allUserdata.Userdata
-           .map(item => {
-             return (
-               (item["storeId"] =
-                 item.storeId && item.storeId !== null && item.storeId !== ""
-                   ? item.storeId.concat(
-                       item.storeId && item.storeId !== null ? " " + item.storeId : ""
-                     )
-                   : ""),
-               (item.createdAt = this.formatDate(item.createdAt))
-             );
-           });
+          res.data.allUserdata.Userdata.map((item) => {
+            return (
+              (item["storeId"] =
+                item.storeId && item.storeId !== null && item.storeId !== ""
+                  ? item.storeId.concat(
+                      item.storeId && item.storeId !== null
+                        ? " " + item.storeId
+                        : ""
+                    )
+                  : ""),
+              (item.createdAt = this.formatDate(item.createdAt))
+            );
+          });
 
           this.setState({
-             count:
-               res.data && res.data.allUserdata && res.data.allUserdata !== null
-                 ? res.data.allUserdata.totalCount
-                 : "",
-             listData:
-               res.data && res.data.allUserdata && res.data.allUserdata !== null
-                 ? res.data.allUserdata.Userdata
+            count:
+              res.data && res.data.allUserdata && res.data.allUserdata !== null
+                ? res.data.allUserdata.totalCount
+                : "",
+            listData:
+              res.data && res.data.allUserdata && res.data.allUserdata !== null
+                ? res.data.allUserdata.Userdata
                 : "",
             userData: res.data.allPaymentRequests.PaymentRequests.map(
               (item) => {
@@ -711,7 +712,7 @@ class GuardianPaymentRequest extends Component {
                     item.firstname +
                     " " +
                     (item.lastname != null ? item.lastname : ""),
-                    amount: item.requestedAmount
+                  //amount: item.requestedAmount,
                 };
               }
             ),
@@ -726,26 +727,27 @@ class GuardianPaymentRequest extends Component {
 
   handleSearchChange = (event) => {
     const { filter } = this.state;
+    console.log(filter)
     // const result = await this.props.filter({
-      
+
     // })
     filter["and"] = [
       {
         or: [
-        //{ storeId : { like: `%${event.target.value}%` } },
-         { participantId : { like: `%${event.target.value}%` } },
-         //{ id : { like: `%${event.target.value}%` } },
+          //{ storeId : { like: `%${event.target.value}%` } },
+          //{ participantId: { like: `%${event.target.value}%` } },
+        //  { id : { like: `%${event.target.value}%` } },
 
-          //{ firstname: { like: `%${event.target.value}%` } },
-           //{ lastname: { like: `%${event.target.value}%` } },
-           //{ createdAt: { like: `%${event.target.value}%` } },
-           //{ madefor: { like: `%${event.target.value}%` } },
-           //{ madeby: { like: `%${event.target.value}%` } },
-           
-           //{ storeName: { like: `%${event.target.value}%` } },
-           //{ requestedAmount: { like: `%${event.target.value}%` } },
+         { firstname: { like: `%${event.target.value}%` } },
+          { lastname: { like: `%${event.target.value}%` } },
+         // { createdAt: { like: `%${event.target.value}%` } },
+          //{ madefor: { like: `%${event.target.value}%` } },
+          //{ madeby: { like: `%${event.target.value}%` } },
+
+          //{ storeName: { like: `%${event.target.value}%` } },
+          { requestedAmount: { like: `%${event.target.value}%` } },
         ],
-      },
+      }, 
     ];
 
     this.setState({ listData: undefined });
@@ -757,11 +759,44 @@ class GuardianPaymentRequest extends Component {
     this.debounceTimer = this.debounce(
       this.debounceTimer,
       () => {
+        // this.getDisputes();
         this.paymentRequestData();
       },
-      200
+      200,
+
     );
   };
+
+//   getBuisnessData = async () => {
+//     try{
+//       const resp = await fetchMethod(guardianPartiQuery, {where:this.state.filter}).then(res=>res.json())
+//       console.log(resp)
+//       const participant = resp.data?.allUserdata?.Userdata || []
+//       console.log(participant)
+//       let usersBusinessdata =[];
+//       for(let i =0; i < participant.length; i++){
+//         let users = await fetchMethod(guardianbusinessQuery, {where:{participantId:participant[i].id}}).then(res=>res.json())
+//         console.log(users)
+//         const business = users.data?.allParticipantConnectedBusinesses?.ParticipantConnectedBusinesses || []
+//         business.map(item=>{
+//           let usersBusiness = item.fkParticipantConnectedBusinessStoreIdrel.Businesses[0];
+//           if(usersBusiness){
+//             usersBusiness.id = item.id;
+//             if(!usersBusinessdata.filter(business => business.storeName === usersBusiness.storeName).length){
+//               usersBusinessdata.push(usersBusiness);
+//             }
+//           }
+//         })
+//       }
+//       this.setState({
+//         listData : usersBusinessdata
+//       })
+//     }
+//     catch(error){
+//       swal({ title: error.message, icon: "warning" });
+//       this.setState({ listData: [] });
+//     };
+// }
 
   getPaticipnatDropDown = () => {
     fetchMethod(userdataQuery, {
@@ -1597,7 +1632,6 @@ class GuardianPaymentRequest extends Component {
 }
 
 export default withRouter(GuardianPaymentRequest);
-
 
 // getBuisnessData = async () => {
 //   try{

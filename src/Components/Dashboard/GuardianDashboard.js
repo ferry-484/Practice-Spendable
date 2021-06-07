@@ -5,6 +5,100 @@ import "./dashboard.css"
 import { fetchMethod } from "../../FetchMethod";
 import { guardianDashboardCount , paymentGuardianRequestAllQuery} from "./DashboardQuery";
 import { withRouter } from "react-router-dom";
+
+import "./superLedger.css";
+import { superLedgerList } from "./SuperLedgerConfig";
+import ReactTableComponent from "../../ReactTable/ReactTable";
+import {
+  Button,
+  IconButton,
+  InputLabel,
+  MenuItem,
+  Select,
+  FormControl,
+  Dialog,
+  Typography,
+  Input,
+  TextField
+} from "@material-ui/core";
+import { DotLoader } from "react-spinners";
+import { dropdownQuery } from "./LedgerQuery";
+//import { fetchMethod } from "../../FetchMethod";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import CloseIcon from "@material-ui/icons/Close";
+import { withStyles } from "@material-ui/core/styles";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import swal from "sweetalert";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import moment from "moment";
+import { formatDate } from "../FormatDate";
+
+import {
+    participantQuery,
+    businessQuery,
+    superLedgerQuery,
+    saveLedger,
+    updateCardLimit,
+    participantQueryData,
+    businessQueryData,
+    cardData
+  } from "../SuperLedger/LedgerQuery";
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250
+    }
+  }
+};
+const styles = theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2)
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500]
+  }
+});
+
+const DialogTitle = withStyles(styles)(props => {
+  const { children, classes, onClose, ...other } = props;
+  return (
+    <MuiDialogTitle disableTypography className={classes.root} {...other}>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+      <Typography variant="h6">{children}</Typography>
+    </MuiDialogTitle>
+  );
+});
+
+const DialogContent = withStyles(theme => ({
+  root: {
+    padding: theme.spacing(2)
+  }
+}))(MuiDialogContent);
+
+const DialogButton = withStyles(theme => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(1)
+  }
+}))(MuiDialogActions);
+
  class GuardianDashboard extends Component {
     constructor(props) {
         super(props);
@@ -12,7 +106,17 @@ import { withRouter } from "react-router-dom";
             buisnessCount:undefined,
             participantCount:undefined,
             supporterCount: undefined,
-            paymentCount : undefined
+            paymentCount : undefined,
+            listData: undefined,
+            pageNo: parseInt(localStorage.getItem("rows")),
+      rows: parseInt(localStorage.getItem("rows")),
+      search: "",
+      pageNo: 2,
+      rows: 2,
+      count: 0,
+      participantOptions: [],
+      openModal: false,
+      participantId: undefined
         };
     }
     paymentRouting = () => {
@@ -22,6 +126,59 @@ import { withRouter } from "react-router-dom";
         this.totalDashboardCount();
         this.totalPaymentCount();
     }
+
+    updatePagination = (pageNumber, size) => {
+        this.setState(
+          {
+            pageNo: pageNumber,
+            rows: size,
+          },
+          () => {
+            this.paymentRequestData();
+          }
+        );
+      };
+
+    componentWillMount() {
+        fetchMethod(dropdownQuery)
+          .then(res => res.json())
+          .then(res => {
+            res.data.allUserdata != undefined
+              ? this.setState({
+                  participantOptions: res.data.allUserdata.Userdata.map(item => {
+                    return {
+                      id: item.id,
+                      name:
+                        item.firstname +
+                        " " +
+                        (item.lastname != null ? item.lastname : "")
+                    };
+                  })
+                })
+              : this.setState({ loading: true });
+          })
+          .catch(e => console.log(e));
+        this.setState({
+          listData: [
+            {
+              amount: "$1000",
+              usertype: "Guardian",
+              dc: "Debit",
+              name: "Manali Gupta",
+              rs: "$1000",
+              datetime: "07/10/2020 05:14"
+            },
+            {
+              amount: "$2000",
+              usertype: "Guardian",
+              dc: "Credit",
+              name: "Manali Gupta",
+              rs: "$10000",
+              datetime: "07/10/2020 06:14"
+            }
+          ]
+        });
+      }
 
     totalPaymentCount = () =>{
         fetchMethod(paymentGuardianRequestAllQuery(localStorage.getItem("userInfo") ? JSON.parse(localStorage.getItem("userInfo")).id : ''))
@@ -67,7 +224,12 @@ import { withRouter } from "react-router-dom";
               supporterCount:
                 res && res.data && res.data.id3 && res.data.id3 !== null
                   ? res.data.id3.totalCount
-                  : 0
+                  : 0,
+                ledgerCount:
+                res && res.data && res.data.id4 && res.data.id4 !== null
+                  ? res.data.id4.totalCount
+                  : 0,
+
             });
           });
     }
@@ -80,8 +242,39 @@ import { withRouter } from "react-router-dom";
     supporterRouting=()=>{
         this.props.history.push("/supporter");
     }
+    cardLimitRouting=()=>{
+        this.props.history.push("/cardlimit");
+    }
+
+    addFunds = () => {
+        this.props.history.push("/addFunds");
+      };
+      handleClose = () => {
+        this.setState({ openModal: false });
+      };
+      handleParticipant = (e, v) => {
+        if (v !== null && v !== undefined) {
+          this.setState({
+            participantId: v.id
+          });
+        }
+      };
+      openModalBox = () => {
+        this.setState({ openModal: true });
+      };
  
     render() {
+
+        const nameColumn = [
+            {
+              Header: "S No.",
+              Cell: row => {
+                return <div className="dot">{row.original.sNo}</div>;
+              },
+              width: 45
+            }
+          ];
+          const columns = nameColumn.concat(superLedgerList.columns);
         return (
             <div className="dashboardSection">
                 <h2>Dashboard</h2>
@@ -559,14 +752,178 @@ import { withRouter } from "react-router-dom";
                             </CardContent>
                         </Card>
 
+                        {/* <Card className="paymentCard" onClick={this.cardLimitRouting}>
+                            <CardContent>
+                                <div className="cardHeader">
+                                    <h3>Card Limit</h3>
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">
+                                            <g id="payment_request" data-name="payment request" transform="translate(0 -0.301)">
+                                                <path id="Path_3005" data-name="Path 3005" d="M457.041,69.494,449.1,61.543V93.405h10.621V75.95A9.1,9.1,0,0,0,457.041,69.494Zm0,0" transform="translate(-415.726 -56.69)" fill="#ffb782" />
+                                                <path id="Path_3006" data-name="Path 3006" d="M6.2,30.916.2,15.341a3.034,3.034,0,0,1,1.741-3.922L30.261.512a3.034,3.034,0,0,1,3.922,1.741l6,15.575a3.034,3.034,0,0,1-1.741,3.922L10.125,32.657A3.035,3.035,0,0,1,6.2,30.916Zm0,0" transform="translate(0 -0.007)" fill="#de4c3c" />
+                                                <path id="Path_3007" data-name="Path 3007" d="M66.148,101.961,32.2,115.122l2.261,5.869L68.41,107.836Zm0,0" transform="translate(-29.803 -94.104)" fill="#7a4930" />
+                                                <path id="Path_3008" data-name="Path 3008" d="M0,20.025V3.335A3.035,3.035,0,0,1,3.038.3H33.383a3.035,3.035,0,0,1,3.035,3.035v16.69a3.035,3.035,0,0,1-3.035,3.035H3.038A3.035,3.035,0,0,1,0,20.025Zm0,0" transform="translate(-0.004)" fill="#4398d1" />
+                                                <path id="Path_3009" data-name="Path 3009" d="M125.5.3h-3.224L99.52,23.06H125.5a3.035,3.035,0,0,0,3.035-3.035V3.335A3.035,3.035,0,0,0,125.5.3Zm0,0" transform="translate(-92.123)" fill="#3e8cc7" />
+                                                <path id="Path_3010" data-name="Path 3010" d="M40.832,163.609h3.035v1.517H40.832Zm0,0" transform="translate(-37.798 -151.17)" fill="#5eb3d1" />
+                                                <path id="Path_3011" data-name="Path 3011" d="M40.832,224.852h3.035v1.517H40.832Zm0,0" transform="translate(-37.798 -207.861)" fill="#5eb3d1" />
+                                                <path id="Path_3012" data-name="Path 3012" d="M224.555,224.852h3.035v1.517h-3.035Zm0,0" transform="translate(-207.865 -207.861)" fill="#5eb3d1" />
+                                                <path id="Path_3013" data-name="Path 3013" d="M102.074,163.609h3.034v1.517h-3.034Zm0,0" transform="translate(-94.488 -151.17)" fill="#5eb3d1" />
+                                                <path id="Path_3014" data-name="Path 3014" d="M163.313,163.609h3.035v1.517h-3.035Zm0,0" transform="translate(-151.175 -151.17)" fill="#5eb3d1" />
+                                                <path id="Path_3015" data-name="Path 3015" d="M224.555,163.609h3.035v1.517h-3.035Zm0,0" transform="translate(-207.865 -151.17)" fill="#5eb3d1" />
+                                                <path id="Path_3016" data-name="Path 3016" d="M418.484,41.129H420V43.4h-1.517Zm0,0" transform="translate(-387.381 -37.794)" fill="#5eb3d1" />
+                                                <path id="Path_3017" data-name="Path 3017" d="M377.656,41.129h1.517V43.4h-1.517Zm0,0" transform="translate(-349.587 -37.794)" fill="#5eb3d1" />
+                                                <path id="Path_3018" data-name="Path 3018" d="M336.828,41.129h1.517V43.4h-1.517Zm0,0" transform="translate(-311.794 -37.794)" fill="#5eb3d1" />
+                                                <path id="Path_3019" data-name="Path 3019" d="M296,41.129h1.517V43.4H296Zm0,0" transform="translate(-274.004 -37.794)" fill="#5eb3d1" />
+                                                <path id="Path_3020" data-name="Path 3020" d="M408.277,490.23h13.655v7.586H408.277Zm0,0" transform="translate(-377.932 -453.515)" fill="#88b337" />
+                                                <path id="Path_3021" data-name="Path 3021" d="M308.451,172.742a3.289,3.289,0,0,0-4.749,4.548l6.217,6.782a10.231,10.231,0,0,0,.207,10.5l.552.882h9.862V184.831Zm0,0" transform="translate(-280.333 -158.737)" fill="#ffb782" />
+                                                <path id="Path_3022" data-name="Path 3022" d="M438.9,520.852h1.517v1.517H438.9Zm0,0" transform="translate(-406.277 -481.861)" fill="#6b962a" />
+                                                <path id="Path_3023" data-name="Path 3023" d="M40.832,45.984V42.343a1.214,1.214,0,0,1,1.214-1.214h3.641A1.213,1.213,0,0,1,46.9,42.343v3.641A1.213,1.213,0,0,1,45.687,47.2H42.046A1.214,1.214,0,0,1,40.832,45.984Zm0,0" transform="translate(-37.798 -37.794)" fill="#fdb62f" />
+                                                <path id="Path_3024" data-name="Path 3024" d="M40.832,71.75h2.276v1.517H40.832Zm0,0" transform="translate(-37.798 -66.139)" fill="#fd7b2f" />
+                                                <path id="Path_3025" data-name="Path 3025" d="M91.867,71.75h2.276v1.517H91.867Zm0,0" transform="translate(-85.04 -66.139)" fill="#fd7b2f" />
+                                                <path id="Path_3026" data-name="Path 3026" d="M483.633,290.762a.757.757,0,0,1-.536-.222l-3.035-3.035a.759.759,0,0,1,1.073-1.073l3.035,3.035a.759.759,0,0,1-.537,1.3Zm0,0" transform="translate(-444.185 -264.668)" fill="#f2a46f" />
+                                            </g>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div className="cardBody">
+                                    <span>{this.state.ledgerCount ? this.state.ledgerCount : 0}</span>
+                                    <span>Total Participant</span>
+                                </div>
+                            </CardContent>
+                        </Card> */}
 
                 </div>
-
                 
                 </div>
-
                 
-                </div> 
+
+                <div className="ledgerSection">
+                <h2>List Participants</h2>
+
+              <div>
+          {/* <FormControl>
+            <InputLabel id="demo-simple">Participants</InputLabel>
+            <Select
+              labelid="demo-simple"
+              value={this.state.participantId}
+              name="participantId"
+              onChange={this.handleFilter}
+              input={<Input />}
+              MenuProps={MenuProps}
+            >
+              {this.state.participantOptions !== undefined
+                ? this.state.participantOptions.map((item, index) => {
+                    return (
+                      <MenuItem key={index} value={item.id}>
+                        {item.name}
+                      </MenuItem>
+                    );
+                  })
+                : ""}
+            </Select>
+          </FormControl> */}
+          
+        </div>
+
+        {/* <div>
+          <Button onClick={() => this.openModalBox()} className="addfundBtn">
+            Add Funds
+          </Button>
+        </div> */}
+        {this.state.listData ? (
+          <div className="superledgerTable">
+            <ReactTableComponent
+              listData={this.state.listData}
+              listConfig={superLedgerList}
+              columns={columns}
+              dataCount={this.state.count}
+              updatePagination={this.updatePagination}
+              initialPage={this.state.pageNo / this.state.rows}
+              onRowClick={() => {}}
+              forSerialNo={{
+                pageNo: this.state.pageNo,
+                pageSize: this.state.rows
+              }}
+            />
+          </div>
+        ) : (
+          <div className="spinner">
+            <DotLoader size={70} color={"#020f1f"} />
+          </div>
+        )}
+
+        <Dialog
+          open={this.state.openModal}
+          onClose={this.handleClose}
+          aria-labelledby="simple-modal-title"
+          ariadescribedby="simple-modal-description"
+          className="chooseBuisness"
+        >
+          <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
+            Select Participant
+          </DialogTitle>
+          <DialogContent>
+            <div>
+              {/* <FormControl>
+                <InputLabel id="demo-simple" margin="dense" variant="outlined">
+                  Business
+                </InputLabel>
+                <Select
+                  labelid="demo-simple"
+                  value={this.state.storeId}
+                  name="storeId"
+                  onChange={this.handleBuisnessFilter}
+                  input={<Input />}
+                  MenuProps={MenuProps}
+                >
+                  {this.state.BusinessesOptions !== undefined
+                    ? this.state.BusinessesOptions.map((item, index) => {
+                        return (
+                          <MenuItem key={index} value={item.id}>
+                            {item.business}
+                          </MenuItem>
+                        );
+                      })
+                    : ""}
+                </Select> */}
+
+              <FormControl>
+                <Autocomplete
+                  id="combo-box-demo"
+                  value={this.state.storeId}
+                  options={this.state.participantOptions}
+                  onChange={(e, v) => this.handleParticipant(e, v)}
+                  getOptionLabel={option =>
+                    option && option.name ? option.name : ""
+                  }
+                  style={{ width: 300 }}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label="Participants"
+                      variant="outlined"
+                    />
+                  )}
+                />
+                <TextField id="standard-basic" label="Amount" />
+              </FormControl>
+            </div>
+          </DialogContent>
+          <DialogButton>
+            <Button onClick={() => this.handleClose()}>Cancel</Button>
+            <Button
+              onClick={() => {
+                // this.submitButton();
+              }}
+            >
+              Save
+            </Button>
+          </DialogButton>
+        </Dialog>
+      </div>
+
+                </div>
+         
             
         );
     }

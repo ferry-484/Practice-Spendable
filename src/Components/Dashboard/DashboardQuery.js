@@ -15,7 +15,7 @@ export const dashboardCount = `
     id3: allUserdata(where: { role: "SUPPORTER", active: 1 }) {
       totalCount
     }
-  }
+  }  
 `;
 
 export const guardianDashboardCount = id => `
@@ -29,6 +29,10 @@ export const guardianDashboardCount = id => `
     id3: allUserdata(where: {role: "SUPPORTER", active: 1 }) {
       totalCount
     }
+    id4: allSuperLedgers(where: {guardianId:${id},role: "PARTICIPANT", active: 1 }) {
+      totalCount
+    }
+
   }
 `;
 

@@ -436,6 +436,7 @@ export default class SuperLedger extends Component {
               } else {
                 res.data.allSuperLedgers.SuperLedgers.map(item => {
                   console.log("@cardd card ", item.txnId);
+                  console.log(res);
                   return (
                     (item["name"] =
                       item.fkcreatebysuperledgermaprel &&

@@ -78,7 +78,7 @@ const DialogButton = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-export default class GuardianLedger extends Component {
+export default class CardLimit extends Component {
   constructor(props) {
     super(props);
     this.state = {
