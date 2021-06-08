@@ -24,6 +24,37 @@ query($where:JSON,$last: Int, $first: Int){
 }
 `;
 
+export const getSupporterConnectedParticipant = `
+  query($where:JSON){
+    allParticipantConnectedSupporters(where:$where){
+      ParticipantConnectedSupporters{
+        fkParticipantConnectedSupporterParticipantIdrel{
+          Userdata{
+            firstname
+            lastname
+            phonenumber
+            address
+            city
+            dob
+            email
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const getGuardianParticipant = `
+query($where:JSON){
+  allUserdata(where:$where){
+    totalCount
+    Userdata{
+      id
+    }
+  }
+}
+`;
+
 export const connectedPaymentRequestQuery = `
 query($where:JSON,$last: Int, $first: Int){
   allPaymentRequests(where:$where,last:$last,first:$first){

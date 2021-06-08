@@ -112,11 +112,23 @@ export const superLedgerQuery = `query allSuperLedgers($where:JSON,$last: Int, $
         PaymentRequests{
           id
           extraNotes
+          itemCategoryId
         }
       }
     }
   }
 }`;
+
+export const remainingBudgetQueryData = `
+query($where:JSON){
+  allBudgets(where:$where){
+        Budgets{
+        budgetAvailable
+      }
+  }  
+}
+
+`;
 
 export const participantQueryData = `
 query($where:JSON){

@@ -3,7 +3,7 @@ import ReactTableComponent from "../../../ReactTable/ReactTable";
 import { adminParticipantList } from "./SupporterTabSetupConfig";
 import swal from "sweetalert";
 import { fetchMethod } from "../../../FetchMethod";
-import { connectedParticipantQuery } from "./SupporterTabQuery";
+import { connectedParticipantQuery, getGuardianParticipant, getSupporterConnectedParticipant } from "./SupporterTabQuery";
 import { DotLoader } from "react-spinners";
 import "./supporterTabSetup.css";
 class ConnectedParticipant extends Component {
@@ -18,12 +18,12 @@ class ConnectedParticipant extends Component {
       filter: {
         order: "id desc",
         supporterId: this.props.id,
-        active: 1
-      }
+        active: 1,
+      },
     };
   }
 
-  formatDate = date => {
+  formatDate = (date) => {
     var date = new Date(date);
     var dd = date.getDate();
     var mm = date.getMonth() + 1;
@@ -42,14 +42,58 @@ class ConnectedParticipant extends Component {
     this.connectedParticipant();
   }
 
-  connectedParticipant = () => {
-    fetchMethod(connectedParticipantQuery, {
+  connectedParticipant = async () => {
+    if (localStorage.getItem("role") == "GUARDIAN") {
+      try {
+        const response = await fetchMethod(getGuardianParticipant , {
+          where: this.state.filter,
+        }).then((res) => res.json());
+        const participants = response?.data?.allUserdata?.Userdata || [];
+        let usersData = [];
+        for (let i = 0; i < participants.length; i++) {
+          let users = await fetchMethod(getSupporterConnectedParticipant, {
+            where: {
+              participantId: participants[i].id,
+              supporterId: this.state.supporterId,
+            },
+          }).then((_res) => _res.json());
+          console.log(users);
+          const connectedParticipant =
+            users?.data?.allParticipantConnectedSupporters
+              ?.ParticipantConnectedSupporters || [];
+          if (connectedParticipant.length) {
+            connectedParticipant.map((item) => {
+              let participantDetail =
+                item?.fkParticipantConnectedSupporterParticipantIdrel
+                  ?.Userdata[0];
+              if (participantDetail) {
+                participantDetail.dob = this.formatDate(participantDetail.dob);
+                participantDetail["fullAddress"] = (
+                  (participantDetail.address || "") +
+                  " " +
+                  (participantDetail.city || "")
+                ).trim();
+                usersData.push(participantDetail);
+              }
+            });
+          }
+        }
+        this.setState({
+          count: usersData.length,
+          listData: usersData,
+        });
+      } catch (err) {
+        swal({ title: err.message, icon: "warning" });
+        this.setState({ listData: [] });
+      }
+    }
+    else{fetchMethod(connectedParticipantQuery, {
       where: this.state.filter,
       last: this.state.rows,
-      first: this.state.pageNo
+      first: this.state.pageNo,
     })
-      .then(res => res.json())
-      .then(res => {
+      .then((res) => res.json())
+      .then((res) => {
         if (res && res.error && res.error.statusCode === 401) {
           swal({ title: res.error.message, icon: "warning" }).then(() => {
             localStorage.clear();
@@ -57,7 +101,7 @@ class ConnectedParticipant extends Component {
           });
         } else {
           res.data.allParticipantConnectedSupporters.ParticipantConnectedSupporters.map(
-            item => {
+            (item) => {
               return (
                 (item.firstname =
                   item.fkParticipantConnectedSupporterParticipantIdrel &&
@@ -140,21 +184,23 @@ class ConnectedParticipant extends Component {
               res.data.allParticipantConnectedSupporters !== null
                 ? res.data.allParticipantConnectedSupporters
                     .ParticipantConnectedSupporters
-                : ""
+                : "",
           });
         }
       })
-      .catch(e => {
+    
+      .catch((e) => {
         swal({ title: e.message, icon: "warning" });
         this.setState({ listData: [] });
       });
+    }
   };
 
   updatePagination = (pageNumber, size) => {
     this.setState(
       {
         pageNo: pageNumber,
-        rows: size
+        rows: size,
       },
       () => {
         this.connectedParticipant();
@@ -166,11 +212,11 @@ class ConnectedParticipant extends Component {
     const nameColumn = [
       {
         Header: "S No.",
-        Cell: row => {
+        Cell: (row) => {
           return <div className="dot">{row.original.sNo}</div>;
         },
-        width: 45
-      }
+        width: 45,
+      },
     ];
     const columns = nameColumn.concat(adminParticipantList.columns);
     return (
@@ -187,7 +233,7 @@ class ConnectedParticipant extends Component {
               onRowClick={() => {}}
               forSerialNo={{
                 pageNo: this.state.pageNo,
-                pageSize: this.state.rows
+                pageSize: this.state.rows,
               }}
             />
           </div>

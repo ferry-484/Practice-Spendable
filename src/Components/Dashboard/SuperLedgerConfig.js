@@ -7,66 +7,67 @@ export const superLedgerList = {
       accessor: "participantname",
       sortable: false
     },
+    // {
+    //   Header: "Amount",
+    //   accessor: newFunction(),
+    //   sortable: false
+    // },
+    // {
+    //   Header: "Transaction ID",
+    //   accessor: "txnId",
+    //   sortable: false
+    // },
+    // {
+    //   Header: "Transaction Type",
+    //   accessor: "txnType",
+    //   sortable: false
+    // },
+    // {
+    //   Header: "Transaction By",
+    //   accessor: "name",
+    //   sortable: false
+    // },
     {
-      Header: "Amount",
-      accessor: newFunction(),
-      sortable: false
-    },
-    {
-      Header: "Transaction ID",
-      accessor: "txnId",
-      sortable: false
-    },
-    {
-      Header: "Transaction Type",
-      accessor: "txnType",
-      sortable: false
-    },
-    {
-      Header: "Transaction By",
-      accessor: "name",
-      sortable: false
-    },
-    {
-      Header: "Transaction Date",
+      Header: "Last Transaction",
       accessor: "createdAt",
       sortable: false
     },
-    {
-      Header: "PPAN",
-      accessor: "cardNumber",
-      sortable: false
-    },
+    // {
+    //   Header: "PPAN",
+    //   accessor: "cardNumber",
+    //   sortable: false
+    // },
     {
       Header: "Card Limit",
       accessor: "cardLimit",
       sortable: false
     },
-    {
-      Header: "Item Description",
-      accessor: "itemDescription",
-      sortable: false
-    },
-    {
-      Header: "Store Name",
-      accessor: "storeName",
-      sortable: false
-    },
-    {
-      Header: "Store City",
-      accessor: "storeCity",
-      sortable: false
-    },
-    {
-      Header: "Store Country",
-      accessor: "storeCountry",
-      sortable: false
-    },
-    {
-      Header: "MCC",
-      accessor: "mcc",
-      sortable: false
-    }
+  
+    //  {
+    //    Header: "Remaining Budget",
+    //    accessor: "budgetAvailable",
+    //    sortable: false
+    //  },
+    // {
+    //   Header: "Store Name",
+    //   accessor: "storeName",
+    //   sortable: false
+    // },
+    // {
+    //   Header: "Store City",
+    //   accessor: "storeCity",
+    //   sortable: false
+    // },
+    // {
+    //   Header: "Store Country",
+    //   accessor: "storeCountry",
+    //   sortable: false
+    // },
+    // {
+    //   Header: "MCC",
+    //   accessor: "mcc",
+    //   sortable: false
+    // }
   ]
 };
 
