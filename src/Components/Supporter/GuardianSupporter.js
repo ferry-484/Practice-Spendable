@@ -24,6 +24,8 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import swal from "sweetalert";
 import {
   supporterQuery,
+  getGuardianParticipant,
+  getGuardianParticipantConnectedSupporter,
   saveUserdata,
   supporterParticipantQuery,
   saveParticipantSupporterQuery,
@@ -194,54 +196,92 @@ class GuardianSupporter extends Component {
   //   console.log("e", e)
   // }
 
-  getSupporterData = (data) => {
-    fetchMethod(supporterQuery, {
-      where: this.state.filter,
-      last: this.state.rows,
-      first: this.state.pageNo,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res && res.error && res.error.statusCode === 401) {
-          swal({ title: res.error.message, icon: "warning" }).then(() => {
-            localStorage.clear();
-            window.location = "/";
-          });
-        } else {
-          res.data.allUserdata.Userdata.map((item) => {
-            return (
-              (item["fullAddress"] =
-                item.address && item.address !== null && item.address !== ""
-                  ? item.address.concat(
-                      item.city && item.city !== null ? " " + item.city : ""
-                    )
-                  : ""),
-              (item.dob = this.formatDate(item.dob))
-            );
-          });
-          this.setState({
-            count:
-              res.data && res.data.allUserdata && res.data.allUserdata !== null
-                ? res.data.allUserdata.totalCount
-                : "",
-            listData:
-              res.data && res.data.allUserdata && res.data.allUserdata !== null
-                ? res.data.allUserdata.Userdata
-                : // .map(item => ({
-                  //   firstname: item.firstname,
-                  //   lastname: item.lastname,
-                  //   phonenumber: item.phonenumber,
+  // getSupporterData = (data) => {
+  //   fetchMethod(supporterQuery, {
+  //     where: this.state.filter,
+  //     last: this.state.rows,
+  //     first: this.state.pageNo,
+  //   })
+  //     .then((res) => res.json())
+  //     .then((res) => {
+  //       if (res && res.error && res.error.statusCode === 401) {
+  //         swal({ title: res.error.message, icon: "warning" }).then(() => {
+  //           localStorage.clear();
+  //           window.location = "/";
+  //         });
+  //       } else {
+  //         res.data.allUserdata.Userdata.map((item) => {
+  //           return (
+  //             (item["fullAddress"] =
+  //               item.address && item.address !== null && item.address !== ""
+  //                 ? item.address.concat(
+  //                     item.city && item.city !== null ? " " + item.city : ""
+  //                   )
+  //                 : ""),
+  //             (item.dob = this.formatDate(item.dob))
+  //           );
+  //         });
+  //         this.setState({
+  //           count:
+  //             res.data && res.data.allUserdata && res.data.allUserdata !== null
+  //               ? res.data.allUserdata.totalCount
+  //               : "",
+  //           listData:
+  //             res.data && res.data.allUserdata && res.data.allUserdata !== null
+  //               ? res.data.allUserdata.Userdata
+  //               : // .map(item => ({
+  //                 //   firstname: item.firstname,
+  //                 //   lastname: item.lastname,
+  //                 //   phonenumber: item.phonenumber,
 
-                  // }) )
-                  "",
-          });
-        }
-      })
-      .catch((e) => {
-        swal({ title: e.message, icon: "warning" });
-        this.setState({ listData: [] });
+  //                 // }) )
+  //                 "",
+  //         });
+  //       }
+  //     })
+  //     .catch((e) => {
+  //       swal({ title: e.message, icon: "warning" });
+  //       this.setState({ listData: [] });
+  //     });
+  // };
+  getSupporterData = async (data) => {
+    try {
+      const response = await fetchMethod(getGuardianParticipant, { where: this.state.filter }).then(res => res.json());
+      console.log(response);
+      const participants = response?.data?.allUserdata?.Userdata || [];
+      console.log(participants);
+      let usersData = [];
+      for(let index = 0; index < participants.length; index++) {
+        let users = await fetchMethod(getGuardianParticipantConnectedSupporter, { where: { participantId: participants[index].id }}).then(_res => _res.json());
+        const supporters = users?.data?.allParticipantConnectedSupporters?.ParticipantConnectedSupporters || [];
+        console.log(supporters);
+        supporters.map(_supporter => {
+          let usersDetail = _supporter?.fkParticipantConnectedSupporterIdrel?.Userdata[0];
+          if(usersDetail) {
+            usersDetail.dob = this.formatDate(usersDetail.dob);
+            usersDetail.id = _supporter.supporterId;
+            usersDetail['fullAddress'] = ((usersDetail.address || '') + ' ' + (usersDetail.city || '')).trim();
+            if(!usersData.filter(user => user.firstname === usersDetail.firstname).length) {
+              usersData.push(usersDetail);
+            }
+            // usersData.push(usersDetail);
+          }
+        });
+      }
+      this.setState({
+        count: usersData.length,
+        listData: usersData
       });
+    } catch (error) {
+      if (error?.error?.statusCode === 401) {
+        swal({ title: error.error.message || 'Something went wrong', icon: "warning" }).then(() => {
+          localStorage.clear();
+          window.location = "/";
+        });
+      }
+    }
   };
+
 
   updatePagination = (pageNumber, size) => {
     console.log("eddfsk;oskk;ofd;kfk;s", pageNumber, size);
@@ -600,6 +640,7 @@ class GuardianSupporter extends Component {
       );
     }
   };
+
   handleSupporterFilter = (e) => {
     const {
       target: { name, value },

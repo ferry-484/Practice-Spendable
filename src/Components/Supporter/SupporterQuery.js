@@ -173,6 +173,40 @@ query allUserdata ($where:JSON){
 }
 `;
 
+
+export const getGuardianParticipant = `
+query($where:JSON){
+  allUserdata(where:$where){
+    totalCount
+    Userdata{
+      id
+    }
+  }
+}
+`
+
+export const getGuardianParticipantConnectedSupporter = `
+query($where:JSON){
+  allParticipantConnectedSupporters(where:$where){
+    totalCount
+    ParticipantConnectedSupporters{
+      supporterId
+      fkParticipantConnectedSupporterIdrel{
+        Userdata{
+          firstname
+          lastname
+          phonenumber
+          address
+          city
+          dob
+          email
+        }
+      }
+    }
+  }
+}
+`
+
 export const getCardDetailsQuery = `
 query($where:JSON){
   allCardDetails(where:$where){

@@ -17,9 +17,9 @@ class ConnectedParticipant extends Component {
       count: 0,
       filter: {
         order: "id desc",
-        supporterId: this.props.id,
         active: 1,
       },
+      supporterId: this.props.id,
     };
   }
 

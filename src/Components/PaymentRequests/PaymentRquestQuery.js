@@ -217,6 +217,12 @@ query($where:JSON,$last: Int, $first: Int){
             cardstatus
           }
         }
+        fkPaymentRequestStoreIdrel{
+          Businesses{
+            id
+            storeName
+          }
+        }
     }
   }
 }`;

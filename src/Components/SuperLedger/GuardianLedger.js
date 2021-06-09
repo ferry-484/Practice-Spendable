@@ -139,6 +139,7 @@ export default class CardLimit extends Component {
   handleClose = () => {
     this.setState({ openModal: false });
   };
+  
   handleParticipant = (e, v) => {
     if (v !== null && v !== undefined) {
       this.setState({
