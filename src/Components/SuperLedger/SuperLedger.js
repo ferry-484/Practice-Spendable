@@ -36,6 +36,7 @@ import {
   businessQueryData,
   cardData
 } from "../SuperLedger/LedgerQuery";
+
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
 const MenuProps = {
@@ -95,6 +96,7 @@ export default class SuperLedger extends Component {
     super(props);
     this.state = {
       listData: undefined,
+      listData_copy: [],
       search: "",
       pageNo: parseInt(localStorage.getItem("rows")),
       rows: parseInt(localStorage.getItem("rows")),
@@ -110,11 +112,11 @@ export default class SuperLedger extends Component {
       roleselect: undefined,
       userIdSelect: undefined,
       businessIdSelect: undefined,
+      selectedDate: undefined,
       amount: 0,
       filter: {
         order: "id desc"
       },
-
       role1: "",
       id: "",
       userData: [],
@@ -159,7 +161,7 @@ export default class SuperLedger extends Component {
 
   componentWillMount() {
     this.getLedgerDetails();
-    this.getdropdown();
+    // this.getdropdown();
     this.getPaticipnatDropDown();
     fetchMethod(dropdownQuery, {
       where: this.state.role
@@ -247,7 +249,7 @@ export default class SuperLedger extends Component {
                   phonenumber: item.mobileNo,
                   name: item.storeName
                 };
-              })  
+              })
             })
           : this.setState({ loading: true });
       })
@@ -391,6 +393,53 @@ export default class SuperLedger extends Component {
     this.setState({ openModal: true, isRemoveFund : x == 'add' ? false : true });
   };
 
+  prepareSuperLedgerData = () => {
+    fetchMethod(superLedgerQuery, {
+      where: this.state.filter,
+      last: this.state.rows,
+      first: this.state.pageNo
+    })
+    .then(res => res.json())
+    .then(res => {
+      if (res && res.error && res.error.statusCode === 401) {
+        swal({ title: res.error.message, icon: "warning" }).then(() => {
+          localStorage.clear();
+          window.location = "/";
+        });
+      } else {
+        res.data.allSuperLedgers.SuperLedgers.map(item => {
+          item['name'] = (item?.fkcreatebysuperledgermaprel?.Userdata[0]?.firstname + " " + item?.fkcreatebysuperledgermaprel?.Userdata[0]?.lastname).trim();
+          item["txnId"] = item.txnId || '-';
+          item["participantname"] = (item?.fkuseridsuperledgermaprel?.Userdata[0]?.firstname + " " + item?.fkuseridsuperledgermaprel?.Userdata[0]?.lastname).trim();
+          item["amountAdded"] = item.amountAdded ? '$' + item.amountAdded : '-'
+          item["cardNumber"] = item?.fkcarddetailiimaprel?.CardDetails[0]?.cardNumber || '-';
+          item["cardLimit"] = item.cardlimit ? '$' + item.cardlimit : '-';
+          item["createdAt"] = item.createdAt ? formatDate(item.createdAt).split(' ')[0] : '-';
+          item["itemDescription"] = item?.fkpaymentmaprel?.PaymentRequests[0]?.extraNotes || '-';
+          item["storeName"] = item?.fkbusinessidsuperledgermaprel?.Businesses[0]?.storeName || '-';
+          item["storeCity"] = item?.fkbusinessidsuperledgermaprel?.Businesses[0]?.txnLocationCity || '-';
+          item["storeCountry"] = item?.fkbusinessidsuperledgermaprel?.Businesses[0]?.txnLocationCountry || '-';
+          item["mcc"] = "N/A";
+        });
+        this.setState({
+          count:
+            res.data &&
+            res.data.allSuperLedgers &&
+            res.data.allSuperLedgers !== null
+              ? res.data.allSuperLedgers.totalCount
+              : "",
+          listData: res?.data?.allSuperLedgers?.SuperLedgers || [],
+          listData_copy: res?.data?.allSuperLedgers?.SuperLedgers || [],
+        });
+      }
+      console.log(this.state.listData);
+    })
+    .catch(e => {
+      swal({ title: e.message, icon: "warning" });
+      this.setState({ listData: [] });
+    });
+  }
+
   getLedgerDetails = () => {
     if (
       localStorage.getItem("role") === "GUARDIAN" &&
@@ -421,247 +470,13 @@ export default class SuperLedger extends Component {
           }
         })
         .then(() => {
-          fetchMethod(superLedgerQuery, {
-            where: this.state.filter,
-            last: this.state.rows,
-            first: this.state.pageNo
-          })
-            .then(res => res.json())
-            .then(res => {
-              if (res && res.error && res.error.statusCode === 401) {
-                swal({ title: res.error.message, icon: "warning" }).then(() => {
-                  localStorage.clear();
-                  window.location = "/";
-                });
-              } else {
-                res.data.allSuperLedgers.SuperLedgers.map(item => {
-                  console.log("@cardd card ", item.txnId);
-                  console.log(res);
-                  return (
-                    (item["name"] =
-                      item.fkcreatebysuperledgermaprel &&
-                      item.fkcreatebysuperledgermaprel.Userdata &&
-                      item.fkcreatebysuperledgermaprel.Userdata.length > 0 &&
-                      item.fkcreatebysuperledgermaprel.Userdata[0]
-                        ? item.fkcreatebysuperledgermaprel.Userdata[0]
-                            .firstname +
-                          (item.fkcreatebysuperledgermaprel.Userdata[0]
-                            .lastname != null
-                            ? " " +
-                              item.fkcreatebysuperledgermaprel.Userdata[0]
-                                .lastname
-                            : "")
-                        : ""),
-                    (item["txnId"] = item.txnId ? item.txnId : ""),
-                    (item["participantname"] =
-                      item.fkuseridsuperledgermaprel &&
-                      item.fkuseridsuperledgermaprel.Userdata &&
-                      item.fkuseridsuperledgermaprel.Userdata.length > 0 &&
-                      item.fkuseridsuperledgermaprel.Userdata[0]
-                        ? item.fkuseridsuperledgermaprel.Userdata[0].firstname +
-                          (item.fkuseridsuperledgermaprel.Userdata[0]
-                            .lastname != null
-                            ? " " +
-                              item.fkuseridsuperledgermaprel.Userdata[0]
-                                .lastname
-                            : "")
-                        : ""),
-                    (item["amountAdded"] = item.amountAdded
-                      ? "$" + item.amountAdded
-                      : ""),
-                    (item["cardNumber"] =
-                      item.fkcarddetailiimaprel &&
-                      item.fkcarddetailiimaprel.CardDetails &&
-                      item.fkcarddetailiimaprel.CardDetails.length > 0 &&
-                      item.fkcarddetailiimaprel.CardDetails[0]
-                        ? item.fkcarddetailiimaprel.CardDetails[0].cardNumber
-                        : ""),
-                    (item["cardLimit"] = item.cardlimit
-                      ? "$" + item.cardlimit
-                      : 0),
-                    (item["createdAt"] =
-                      item != null && item.createdAt
-                        ? formatDate(item.createdAt)
-                        : ""),
-                    (item["itemDescription"] =
-                      item.fkpaymentmaprel &&
-                      item.fkpaymentmaprel.PaymentRequests &&
-                      item.fkpaymentmaprel.PaymentRequests.length > 0 &&
-                      item.fkpaymentmaprel.PaymentRequests[0]
-                        ? item.fkpaymentmaprel.PaymentRequests[0].extraNotes
-                        : ""),
-                    (item["storeName"] =
-                      item.fkbusinessidsuperledgermaprel &&
-                      item.fkbusinessidsuperledgermaprel.Businesses &&
-                      item.fkbusinessidsuperledgermaprel.Businesses.length >
-                        0 &&
-                      item.fkbusinessidsuperledgermaprel.Businesses[0]
-                        ? item.fkbusinessidsuperledgermaprel.Businesses[0]
-                            .storeName
-                        : ""),
-                    (item["storeCity"] =
-                      item.fkbusinessidsuperledgermaprel &&
-                      item.fkbusinessidsuperledgermaprel.Businesses &&
-                      item.fkbusinessidsuperledgermaprel.Businesses.length >
-                        0 &&
-                      item.fkbusinessidsuperledgermaprel.Businesses[0]
-                        ? item.fkbusinessidsuperledgermaprel.Businesses[0]
-                            .txnLocationCity
-                        : ""),
-                    (item["storeCountry"] =
-                      item.fkbusinessidsuperledgermaprel &&
-                      item.fkbusinessidsuperledgermaprel.Businesses &&
-                      item.fkbusinessidsuperledgermaprel.Businesses.length >
-                        0 &&
-                      item.fkbusinessidsuperledgermaprel.Businesses[0]
-                        ? item.fkbusinessidsuperledgermaprel.Businesses[0]
-                            .txnLocationCountry
-                        : ""),
-                    (item["mcc"] = "N/A")
-                  );
-                });
-
-                this.setState({
-                  count:
-                    res.data &&
-                    res.data.allSuperLedgers &&
-                    res.data.allSuperLedgers !== null
-                      ? res.data.allSuperLedgers.totalCount
-                      : "",
-                  listData:
-                    res.data &&
-                    res.data.allSuperLedgers &&
-                    res.data.allSuperLedgers !== null
-                      ? res.data.allSuperLedgers.SuperLedgers
-                      : ""
-                });
-              }
-            })
-            .catch(e => {
-              swal({ title: e.message, icon: "warning" });
-              this.setState({ listData: [] });
-            });
+          this.prepareSuperLedgerData();
         });
     } else {
-      fetchMethod(superLedgerQuery, {
-        where: this.state.filter,
-        last: this.state.rows,
-        first: this.state.pageNo
-      })
-        .then(res => res.json())
-        .then(res => {
-          if (res && res.error && res.error.statusCode === 401) {
-            swal({ title: res.error.message, icon: "warning" }).then(() => {
-              localStorage.clear();
-              window.location = "/";
-            });
-          } else {
-            res.data.allSuperLedgers.SuperLedgers.map(item => {
-              console.log("@cardd card ", item.txnId);
-              return (
-                (item["name"] =
-                  item.fkcreatebysuperledgermaprel &&
-                  item.fkcreatebysuperledgermaprel.Userdata &&
-                  item.fkcreatebysuperledgermaprel.Userdata.length > 0 &&
-                  item.fkcreatebysuperledgermaprel.Userdata[0]
-                    ? item.fkcreatebysuperledgermaprel.Userdata[0].firstname +
-                      (item.fkcreatebysuperledgermaprel.Userdata[0].lastname !=
-                      null
-                        ? " " +
-                          item.fkcreatebysuperledgermaprel.Userdata[0].lastname
-                        : "")
-                    : ""),
-                (item["txnId"] = item.txnId ? item.txnId : ""),
-                (item["participantname"] =
-                  item.fkuseridsuperledgermaprel &&
-                  item.fkuseridsuperledgermaprel.Userdata &&
-                  item.fkuseridsuperledgermaprel.Userdata.length > 0 &&
-                  item.fkuseridsuperledgermaprel.Userdata[0]
-                    ? item.fkuseridsuperledgermaprel.Userdata[0].firstname +
-                      (item.fkuseridsuperledgermaprel.Userdata[0].lastname !=
-                      null
-                        ? " " +
-                          item.fkuseridsuperledgermaprel.Userdata[0].lastname
-                        : "")
-                    : ""),
-                (item["amountAdded"] = item.amountAdded
-                  ? "$" + item.amountAdded
-                  : ""),
-                (item["cardNumber"] =
-                  item.fkcarddetailiimaprel &&
-                  item.fkcarddetailiimaprel.CardDetails &&
-                  item.fkcarddetailiimaprel.CardDetails.length > 0 &&
-                  item.fkcarddetailiimaprel.CardDetails[0]
-                    ? item.fkcarddetailiimaprel.CardDetails[0].cardNumber
-                    : ""),
-                (item["cardLimit"] = item.cardlimit ? "$" + item.cardlimit : 0),
-                // ? "$" + item.cardlimit
-                // : item.fkcarddetailiimaprel &&
-                //   item.fkcarddetailiimaprel.CardDetails &&
-                //   item.fkcarddetailiimaprel.CardDetails.length > 0 &&
-                //   item.fkcarddetailiimaprel.CardDetails[0]
-                // ? "$" + item.fkcarddetailiimaprel.CardDetails[0].cardLimit
-                // : ""),
-                (item["createdAt"] =
-                  item != null && item.createdAt
-                    ? moment(item.createdAt).format("DD MMM YYYY hh:mm A")
-                    : ""),
-                (item["itemDescription"] =
-                  item.fkpaymentmaprel &&
-                  item.fkpaymentmaprel.PaymentRequests &&
-                  item.fkpaymentmaprel.PaymentRequests.length > 0 &&
-                  item.fkpaymentmaprel.PaymentRequests[0]
-                    ? item.fkpaymentmaprel.PaymentRequests[0].extraNotes
-                    : ""),
-                (item["storeName"] =
-                  item.fkbusinessidsuperledgermaprel &&
-                  item.fkbusinessidsuperledgermaprel.Businesses &&
-                  item.fkbusinessidsuperledgermaprel.Businesses.length > 0 &&
-                  item.fkbusinessidsuperledgermaprel.Businesses[0]
-                    ? item.fkbusinessidsuperledgermaprel.Businesses[0].storeName
-                    : ""),
-                (item["storeCity"] =
-                  item.fkbusinessidsuperledgermaprel &&
-                  item.fkbusinessidsuperledgermaprel.Businesses &&
-                  item.fkbusinessidsuperledgermaprel.Businesses.length > 0 &&
-                  item.fkbusinessidsuperledgermaprel.Businesses[0]
-                    ? item.fkbusinessidsuperledgermaprel.Businesses[0]
-                        .txnLocationCity
-                    : ""),
-                (item["storeCountry"] =
-                  item.fkbusinessidsuperledgermaprel &&
-                  item.fkbusinessidsuperledgermaprel.Businesses &&
-                  item.fkbusinessidsuperledgermaprel.Businesses.length > 0 &&
-                  item.fkbusinessidsuperledgermaprel.Businesses[0]
-                    ? item.fkbusinessidsuperledgermaprel.Businesses[0]
-                        .txnLocationCountry
-                    : ""),
-                (item["mcc"] = "N/A")
-              );
-            });
-
-            this.setState({
-              count:
-                res.data &&
-                res.data.allSuperLedgers &&
-                res.data.allSuperLedgers !== null
-                  ? res.data.allSuperLedgers.totalCount
-                  : "",
-              listData:
-                res.data &&
-                res.data.allSuperLedgers &&
-                res.data.allSuperLedgers !== null
-                  ? res.data.allSuperLedgers.SuperLedgers
-                  : ""
-            });
-          }
-        })
-        .catch(e => {
-          swal({ title: e.message, icon: "warning" });
-          this.setState({ listData: [] });
-        });
+      this.prepareSuperLedgerData();
     }
   };
+
   CallsendNotificationApi = (token, title, body, data) => {
     console.log(
       "GetUserdataNotification token,title,body,data",
@@ -899,29 +714,38 @@ export default class SuperLedger extends Component {
     });
   };
 
-  handleFilterautocomplete = (e, v) => {
-    console.log("^^^^^^^^^^^^^^^^^^^^^^^^VVVVVVVVVVVVVVVVVVVVVVVVV", v);
-    // console.log("this.setlecdRole", this.state.selecetedRole)
-
-    if (v !== null && v !== undefined) {
-      const { filter } = this.state;
-      filter.userId = v.id;
-      this.setState({ userxyz: v, filter }, () => {
-        console.log(
-          "id test///////////////////",
-          this.state.id,
-          "jjjjjjjjjjjjjjjj",
-          v.id
-        );
+  handleFilterautocomplete = (event) => {
+    if(event.target.value) {
+      this.setState({
+        listData: this.state.listData_copy.filter(user => user.participantname.toLowerCase().includes((event.target.value).toLowerCase()))
       });
-
-      this.getLedgerDetails();
-
-      // this.setState({
-      //   [name]: value,
-      //   filter
-      // });
+    } else {
+      this.setState({
+        listData: this.state.listData_copy
+      });
     }
+    // console.log("^^^^^^^^^^^^^^^^^^^^^^^^VVVVVVVVVVVVVVVVVVVVVVVVV", v);
+    // // console.log("this.setlecdRole", this.state.selecetedRole)
+
+    // if (v !== null && v !== undefined) {
+    //   const { filter } = this.state;
+    //   filter.userId = v.id;
+    //   this.setState({ userxyz: v, filter }, () => {
+    //     console.log(
+    //       "id test///////////////////",
+    //       this.state.id,
+    //       "jjjjjjjjjjjjjjjj",
+    //       v.id
+    //     );
+    //   });
+
+    //   this.getLedgerDetails();
+
+    //   // this.setState({
+    //   //   [name]: value,
+    //   //   filter
+    //   // });
+    // }
   };
   handleTransactionType = e => {
     this.setState({ txnType: e.target.value });
@@ -942,13 +766,48 @@ export default class SuperLedger extends Component {
 
   handleTransactionTypeAutocomplete = (e, v) => {
     if (v !== null && v !== undefined) {
-      console.log("ccccccccccccccccccccccccc", v.txnType);
+      console.log(v);
+      console.log("ccccccccccccccccccccccccc", v.txnType, this.state.filter);
       const { filter } = this.state;
       filter.txnType = v.txnType;
       this.setState({ txnxyz: v, filter });
       this.getLedgerDetails();
     }
   };
+
+  handleStoreNameSearch = (event) => {
+    if(event.target.value) {
+      this.setState({
+        listData: this.state.listData_copy.filter(record => record.storeName.toLowerCase().includes((event.target.value).toLowerCase()))
+      });
+    } else {
+      this.setState({
+        listData: this.state.listData_copy
+      })
+    }
+  }
+
+  handleTxnMadeBySearch = (event) => {
+    if(event.target.value) {
+      this.setState({
+        listData: this.state.listData_copy.filter(record => record.name.toLowerCase().includes((event.target.value).toLowerCase()))
+      })
+    } else {
+      this.setState({
+        listData: this.state.listData_copy
+      })
+    }
+  }
+  
+  handleDateSearch = (date) => {
+    console.log(date.target.value);
+    let d = date.target.value.split('-').reverse().join('/');
+    this.setState({
+      selectedDate: date,
+      listData: this.state.listData_copy.filter(record => record.createdAt.includes(d))
+    })
+  };
+
   handlecardFilter = e => {
     console.log("%^&^&^&^^&*", e);
     this.setState({ cardId: e.target.value });
@@ -958,10 +817,11 @@ export default class SuperLedger extends Component {
     console.log("this ,,,,ste filter", this.state.filter);
     delete this.state.filter.userId;
     delete this.state.filter.txnType;
+    document.querySelectorAll('.textFilters .MuiInputBase-input.MuiInput-input').forEach((tag) => {
+      tag.value = null;
+    })
     this.setState(
       {
-        // userId: "",
-        // userData: [],
         id: "",
         txnType: "",
         userxyz: null,
@@ -1048,29 +908,10 @@ export default class SuperLedger extends Component {
                   })
                 : ""}
             </Select> */}
-
-            <Autocomplete
-              id="combo-box-demo"
-              size="small"
-              value={this.state.userxyz}
-              // defaultValue=""
-              // name={this.state.id}
-              options={this.state.userData}
-              onChange={(e, v) => this.handleFilterautocomplete(e, v)}
-              getOptionLabel={option =>
-                option
-                  ? option.firstname +
-                    (option.lastname ? " " + option.lastname : "")
-                  : ""
-              }
-              // style={{ width: 300 }}
-              renderInput={params => (
-                <TextField
-                  {...params}
-                  label="Participants"
-                  variant="outlined"
-                />
-              )}
+            <TextField
+              className = "textFilters"
+              onKeyUp={(event)=> this.handleFilterautocomplete(event)}
+              label="Participants"
             />
           </FormControl>
 
@@ -1116,13 +957,40 @@ export default class SuperLedger extends Component {
                 <TextField
                   {...params}
                   label="Transaction Type"
-                  variant="outlined"
                 />
               )}
             />
           </FormControl>
-          
-          
+          {
+            localStorage.getItem("role") === "GUARDIAN" ? (
+            <div>
+              <FormControl>
+                <TextField
+                  className = "textFilters"
+                  onKeyUp={(event) => this.handleStoreNameSearch(event)}
+                  label="Store Name"
+                />
+              </FormControl>
+              <FormControl>
+                <TextField
+                  className = "textFilters"
+                  onKeyUp={(event) => this.handleTxnMadeBySearch(event)}
+                  label="Transaction Made By"
+                />
+              </FormControl>
+              <TextField
+                id="date"
+                className="textFilters"
+                label="Transaction Date"
+                type="date"
+                format="MM/dd/yyyy"
+                onChange={evt => this.handleDateSearch(evt)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+            </div>) : null
+          }
         </div>
 
         <div className="actions">
@@ -1131,12 +999,12 @@ export default class SuperLedger extends Component {
           </Button>
           {localStorage.getItem("role") === "ADMIN" ? (
             <>
-            <Button onClick={() => this.openModalBox('add')} className="addfundBtn">
-              Add Funds
-            </Button>
-            <Button onClick={() => this.openModalBox('remove')} className="addfundBtn">
-              Remove Funds
-            </Button>
+              <Button onClick={() => this.openModalBox('add')} className="addfundBtn">
+                Add Funds
+              </Button>
+              <Button onClick={() => this.openModalBox('remove')} className="addfundBtn">
+                Remove Funds
+              </Button>
             </>
           ) : (
             ""
@@ -1146,14 +1014,14 @@ export default class SuperLedger extends Component {
           <div className="superledgerTable">
             <ReactTableComponent
               listData={this.state.listData}
-              listConfig={superLedgerList}  
+              listConfig={superLedgerList}
               columns={columns}
               dataCount={this.state.count}
               updatePagination={this.updatePagination}
               initialPage={this.state.pageNo / this.state.rows}
               onRowClick={() => {}}
               forSerialNo={{
-                pageNo: this.state.pageNo,  
+                pageNo: this.state.pageNo,
                 pageSize: this.state.rows
               }}
             />

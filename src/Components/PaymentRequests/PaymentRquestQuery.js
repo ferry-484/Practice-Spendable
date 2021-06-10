@@ -397,6 +397,17 @@ export const updateUserBudget = `
   }
 `;
 
+export const dropdownQuery = `
+query{
+  allUserdata(where:{role:"PARTICIPANT",active:1}){
+    Userdata{
+      id
+      firstname
+      lastname
+    }
+  }
+}`;
+
 // allPaymentRequests(where:$where,last:$last,first:$first){
 //   edges{
 //     node{

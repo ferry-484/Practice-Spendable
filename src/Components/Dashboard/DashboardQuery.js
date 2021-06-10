@@ -50,3 +50,65 @@ query{
     }
   }
 }`;
+
+export const remainingBudgetQueryData = `
+query($where:JSON){
+  allBudgets(where:$where){
+        Budgets{
+        budgetAvailable
+      }
+  }  
+}
+`
+
+export const superLedgerQuery = `query allSuperLedgers($where:JSON){
+  allSuperLedgers (where:$where) {
+    totalCount
+    SuperLedgers {
+      id
+      amountAdded
+      businessId
+      userId
+      txnType
+      createdAt
+      cardlimit
+      txnId
+      fkuseridsuperledgermaprel {
+        Userdata {
+          id
+          role
+          firstname
+          lastname
+        }
+      }
+      fkbusinessidsuperledgermaprel {
+        Businesses {
+          id
+          storeName
+          txnLocationCity
+          txnLocationCountry
+        }
+      }
+      fkcarddetailiimaprel {
+        CardDetails {
+          id
+          cardLimit
+          cardNumber
+        }
+      }
+      fkcreatebysuperledgermaprel{
+        Userdata{
+          firstname
+          lastname
+        }
+      }
+      fkpaymentmaprel{
+        PaymentRequests{
+          id
+          extraNotes
+          itemCategoryId
+        }
+      }
+    }
+  }
+}`;
