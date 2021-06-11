@@ -32,6 +32,24 @@ export const adminBuisnessList = {
   ]
 };
 
+export const addBusinessList = {
+  showPagination: true,
+  showSerialNo: true,
+  columns: [
+    // {
+    //   Header: "Store Name",
+    //   accessor: "storeName",
+    //   sortable: false
+    // },
+    {
+      Header: "Business Type",
+      accessor: "businesstype",
+      sortable: false
+    },
+    
+  ]
+};
+
 export const addBuisnessConfig = {
   className: "addBuisnessForm",
   fields: [

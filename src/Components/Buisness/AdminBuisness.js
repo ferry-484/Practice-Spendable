@@ -396,6 +396,11 @@ class AdminBuisness extends Component {
     this.props.history.push("/addBuisness");
   };
 
+  addBuisnessType = () => {
+    this.props.history.push("/addBuisnesstype");
+  };
+
+
   handleEditModal = data => {
     this.props.history.push({
       pathname: "/editBuisness",
@@ -531,6 +536,7 @@ class AdminBuisness extends Component {
             />
           </div>
           <div>
+          <Button onClick={this.addBuisnessType}>Add Business Type</Button>
             <Button onClick={this.addBuisness}>Add Business</Button>
           </div>
         </div>

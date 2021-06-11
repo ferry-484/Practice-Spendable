@@ -594,6 +594,7 @@ export default class SuperLedger extends Component {
       })
       .catch(e => console.log(e));
   };
+  
   handleAmount = e => {
     this.setState({
       amount: 0

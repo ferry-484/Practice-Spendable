@@ -23,6 +23,10 @@
   background: #0053a3;
   color: #fff;
 }
+ .addType {
+  float: right;
+  
+}
 
 .buisnessMemberSection .addMember {
   width: 100%;

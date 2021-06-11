@@ -29,6 +29,8 @@ import SupporterInfo from "../Supporter/SupporterInfo";
 import BuisnessMember from "../Buisness/BuisnessMember";
 import BuisnessMemberInfo from "../Buisness/BuisnessMemberInfo";
 import AddBuisnessMember from "../Buisness/AddBuisnessMember";
+import BusinessType from "../Buisness/BusinessType";
+import AddType from "../Buisness/AddType";
 import EditBuisnessMember from "../Buisness/EditBuisnessMember";
 import GuardianMember from "../Guardian/GuardianMember";
 import AddGuardianParticipant from "../Guardian/AddGuardianParticipant";
@@ -145,13 +147,33 @@ function Routes() {
         />
         <Route
           exact={true}
+          path="/add"
+          render={(e, props) => (
+            <SideBar>
+              <AddType {...e} data={props} />
+            </SideBar>
+          )}
+        />
+
+       <Route
+          exact={true}
+          path="/addBuisnesstype"
+          render={(e, props) => (
+            <SideBar>
+              <BusinessType {...e} data={props} />
+            </SideBar>
+          )}
+        />
+
+         <Route
+          exact={true}
           path="/editGuardian"
           render={(e, props) => (
             <SideBar>
               <EditGuardian {...e} data={props} />
             </SideBar>
           )}
-        />
+        />  
         <Route
           exact={true}
           path="/guardianInfo"

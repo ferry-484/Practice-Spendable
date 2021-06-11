@@ -16,6 +16,35 @@ export const businessQuery = `query($where:JSON,$last: Int, $first: Int){
   }
 }`;
 
+// {
+//   allMasterBusinessTypes{
+//     MasterBusinessTypes{
+//       businessType
+//       id
+//     }
+//   }
+//  }
+
+export const addbusinessTypeQuery = `
+query($where:JSON){
+  allMasterBusinessTypes(where:$where){
+    totalCount
+    MasterBusinessTypes{
+      businessType
+      id
+    }
+  }
+}`;
+
+export const saveMasterBusinessType = gql`
+mutation saveMasterBusinessType($obj:MasterBusinessTypeInput!){
+  saveMasterBusinessType(obj:$obj){
+    id
+  }
+ }
+`;
+
+
 export const allBusinessesInfo = id => `query{
   allBusinesses(where:{id:${id}}){
     Businesses{
