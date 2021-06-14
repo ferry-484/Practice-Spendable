@@ -939,6 +939,7 @@ class GuardianSupporter extends Component {
               </FormControl>
             </div>
           </DialogContent>
+          
           <h4 style={{ textAlign: "center" }}>or</h4>
           <DialogContent>
             <div>
